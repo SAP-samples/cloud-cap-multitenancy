@@ -1,28 +1,20 @@
-# Cloud-CAP-Multitancy
+# Cloud-CAP-Multitenancy
 
 Cloud Application Programming(CAP) sample code project with Multitenancy using Service Manger Tenant Data Separation.  
 
 ## Description
 
-This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming(CAP) and it's multitenancy support library to provide true multitenant enterprise applicaiton.
+This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming(CAP) approach and it's multitenancy support library to provide true enterprise multitenant application.
 
-There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Cloud Platform.  
-
-## Documentation
-
-See the Multitenancy section under the Cookbook.  [Multitanancy](https://cap.cloud.sap/docs/guides/multitenancy)
-
-Also the broader public [CAP Documentation](https://cap.cloud.sap/docs/).
-
+There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Cloud Platform.
 
 ## Requirements
 
- - A [SAP Cloud Platorm account](https://account.hana.ondemand.com/) or [SAP Cloud Platfrom Trial account](https://account.hanatrial.ondemand.com/cockpit).
+ - A [SAP Cloud Platorm account](https://account.hana.ondemand.com/) or [SAP Cloud Platfrom Trial account](https://account.hanatrial.ondemand.com/cockpit)
 
  - Quota for HaaS, Application Runtime, SaaS, and Service Manager
  
-
-## Download and Installation
+ ## Download and Installation
 
  - Clone this repo [https://github.com/SAP-samples/cloud-cap-multitenancy.git](https://github.com/SAP-samples/cloud-cap.multitenancy.git) into your local system or IDE of choice.
 
@@ -65,14 +57,14 @@ Replace occurances of **<landscape>.hana.demand,com** with the landscape region 
 See the [COMMANDS](COMMANDS.md) file for comands for building and deploying the project.
 
 
-## Limitations
-
- - Not all features and techniques may be demonstrable with Cloud Foundry trial accounts.
-
 
 ## Known Issues
 
 This example project contains no known issues.
+
+## Limitations
+
+ - The creation and assignment of Roles to Roll Collections and the assignment of Roll Collections is limited to global accounts with "Feature Set B".
 
 
 ## How to obtain support
@@ -81,6 +73,13 @@ This example project contains no known issues.
  
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html?additionalTagId=723714486627645412834578565527550).
  
+## Documentation
+
+See the Multitenancy section under the Cookbook.  [Multitanancy](https://cap.cloud.sap/docs/guides/multitenancy)
+
+Also the broader public [CAP Documentation](https://cap.cloud.sap/docs/).
+
+
 
 ## Reporting Problems and Contributing Enhancements
 
@@ -100,4 +99,4 @@ A blog post discussing this code sample can be found on the SAP Community.
 
 
 ## License
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
