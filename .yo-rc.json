@@ -1,0 +1,31 @@
+{
+  "generator-sap-partner-eng": {
+    "package_version": "0.3.00",
+    "project_name": "cloud-cap-multitenancy",
+    "app_name": "capmt",
+    "app_desc": "Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separation",
+    "router_name": "capmt-app",
+    "domain_name": "cfapps.us10.hana.ondemand.com",
+    "router_path": "app",
+    "database_path": "db",
+    "services_path": "srv",
+    "uaa_res_name": "capmt-uaa",
+    "uaa_svc_name": "CAPMT_UAA",
+    "database_name": "capmt-hdb",
+    "db_schema_name": "",
+    "hdi_res_name": "capmt-hdi",
+    "hdi_svc_name": "CAPMT_HDI",
+    "services_type": "nodejs",
+    "java_package": "my.company",
+    "services_name": "capmt-srv",
+    "services_api": "capmt_svc_api",
+    "services_be": "capmt_svc_be",
+    "services_route": "catalog",
+    "tests_path": "integration-tests",
+    "multitenant_enabled": true,
+    "reg_res_name": "capmt-reg",
+    "reg_svc_name": "CAPMT_REG",
+    "mgd_res_name": "capmt-smc",
+    "mgd_svc_name": "CAPMT_SMC"
+  }
+}

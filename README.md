@@ -1,16 +1,103 @@
-# Title
+# Cloud-CAP-Multitancy
+
+Cloud Application Programming(CAP) sample code project with Multitenancy using Service Manger Tenant Data Separation.  
 
 ## Description
 
+This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming(CAP) and it's multitenancy support library to provide true multitenant enterprise applicaiton.
+
+There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Cloud Platform.  
+
+## Documentation
+
+See the Multitenancy section under the Cookbook.  [Multitanancy](https://cap.cloud.sap/docs/guides/multitenancy)
+
+Also the broader public [CAP Documentation](https://cap.cloud.sap/docs/).
+
+
 ## Requirements
+
+ - A [SAP Cloud Platorm account](https://account.hana.ondemand.com/) or [SAP Cloud Platfrom Trial account](https://account.hanatrial.ondemand.com/cockpit).
+
+ - Quota for HaaS, Application Runtime, SaaS, and Service Manager
+ 
 
 ## Download and Installation
 
+ - Clone this repo [https://github.com/SAP-samples/cloud-cap-multitenancy.git](https://github.com/SAP-samples/cloud-cap.multitenancy.git) into your local system or IDE of choice.
+
+ - Modify the mta.yaml to specify your specific CloudFoundry Credentials configuration (optional).
+
+ ```
+modules:
+ - name: capmt-srv
+   type: nodejs
+   path: srv
+...
+   properties:
+      CF_API_USER: user@domain.com
+      CF_API_PW: xxxxxx
+...
+```
+ - OR - after deployment, update the environment for the capmt-srv module in the CF_CDEDS.sh script.
+ ```
+cf set-env capmt-srv CF_API_USER 'user@domain.com'
+cf set-env capmt-srv CF_API_PW 'YourPassword'
+cf restage capmt-srv
+```
+
+## Project Structure
+
+File / Folder | Purpose
+---------|----------
+`README.md` | this getting started guide
+`COMMANDS.md` | commands for building/deploying 
+`app/` | content for UI frontends go here
+`db/` | database definitions go here
+`srv/` | your service module code goes here
+`mta.yaml` | project structure and relationships
+`package.json` | project metadata and configuration
+
+## Instructions
+
+Replace occurances of **<landscape>.hana.demand,com** with the landscape region variant for your account. 
+
+See the [COMMANDS](COMMANDS.md) file for comands for building and deploying the project.
+
+
+## Limitations
+
+ - Not all features and techniques may be demonstrable with Cloud Foundry trial accounts.
+
+
 ## Known Issues
+
+This example project contains no known issues.
+
 
 ## How to obtain support
 
-## Contributing
+[Create an issue](https://github.com/SAP-samples/cloud-cap-multitenancy/issues) in this repository if you find a bug or have questions about the content.
+ 
+For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html?additionalTagId=723714486627645412834578565527550).
+ 
+
+## Reporting Problems and Contributing Enhancements
+
+An SAP Code Sample such as this is open software but is not quite a typical full-blown open source project. If you come across a problem, we’d encourage you to check the project’s [issue tracker](https://github.com/SAP-samples/cloud-cap-multitenancy/issues) and to [file a new issue](https://github.com/SAP-samples/cloud-cap-multitenancy/issues/new) if needed. If you are especially passionate about something you’d like to improve, you are welcome to fork the repository and submit improvements or changes as a pull request.
+
+
+## To-Do (upcoming changes)
+
+Tools used throughout the development of this project are evolving and my change over time. This may result in discrepencies in the exact procedures or screen-clips in the accompanying blog posts. All efforts will be made to update the content in order to keep pace with the toolsing, but cannot be guarenteed.
+
+
+## Learn more...
+
+Learn more in the CAP documentation at [CAPIRE](https://cap.cloud.sap/docs/)
+
+A blog post discussing this code sample can be found on the SAP Community. 
+
 
 ## License
-Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
+Copyright (c) 2020 SAP SE or an SAP affiliate company. All rights reserved. This file is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE file](LICENSE).

@@ -1,0 +1,113 @@
+{
+  "name": "capmt",
+  "version": "0.0.1",
+  "description": "Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separation",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^4",
+    "express": "^4",
+    "@sap/hana-client": "^2.4.177"
+  },
+  "devDependencies": {
+    "sqlite3": "^4"
+  },
+  "scripts": {
+    "build": "cds build/all --clean",
+    "deploy": "cds deploy",
+    "start": "cds run"
+  },
+  "cds": {
+    "comment": "Anything defined outside of a [profile] will apply to all profiles.",
+    "requires": {
+      "db": {
+        "kind": "hana",
+        "model": [
+          "db",
+          "srv"
+        ]
+      }
+    },
+    "build": {
+      "target": ".",
+      "tasks": [
+        {
+          "for": "hana",
+          "src": "db",
+          "options": {
+            "model": [
+              "db",
+              "srv"
+            ]
+          }
+        },
+        {
+          "for": "node-cf",
+          "src": "srv",
+          "options": {
+            "model": [
+              "db",
+              "srv"
+            ]
+          }
+        },
+        {
+          "for": "java-cf",
+          "src": "srv",
+          "options": {
+            "model": [
+              "db",
+              "srv"
+            ]
+          }
+        },
+        {
+          "for": "mtx",
+          "src": ".",
+          "dest": "srv"
+        }
+      ]
+    },
+    "[development]": {
+      "comment": "Anything defined inside of [development] will overrided prior values.",
+      "requires": {
+        "db": {
+          "kind": "sqlite"
+        }
+      }
+    },
+    "[qa]": {
+      "comment": "Anything defined inside of [qa] will overrided prior values."
+    },
+    "[production]": {
+      "comment": "Anything defined inside of [production] will overrided prior values.",
+      "requires": {
+        "db": {
+          "kind": "hana"
+        }
+      }
+    },
+    "odata": {
+      "version": "v4"
+    },
+    "hana": {
+      "deploy-format": "hdbcds"
+    },
+    "features": {
+      "snapi": true
+    }
+  },
+  "files": [
+    "app",
+    "db",
+    "handlers",
+    "integration-tests",
+    "srv",
+    "cdsrc.json",
+    "eslintrc",
+    "gitignore",
+    "vscode",
+    "mta.yaml"
+  ]
+}

@@ -1,0 +1,9 @@
+#!/bin/bash
+echo ""
+echo "Run these commands after a full deploy."
+echo ""
+cf set-env capmt-srv CF_API_USER 'user@domain.com'
+cf set-env capmt-srv CF_API_PW 'YourPassword'
+cf restage capmt-srv
+cf env capmt-srv | grep CF_API_USER
+echo ""
