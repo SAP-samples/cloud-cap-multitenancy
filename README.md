@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2020 Andrew Lunde <andrew.lunde@sap.com>
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Cloud-CAP-Multitenancy
 
 Cloud Application Programming(CAP) sample code project with Multitenancy using Service Manger Tenant Data Separation.  
