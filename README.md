@@ -102,7 +102,9 @@ Tools used throughout the development of this project are evolving and my change
 
 Learn more in the CAP documentation at [CAPIRE](https://cap.cloud.sap/docs/)
 
-A blog post discussing this code sample can be found on the SAP Community (to come). 
+A blog post discussing this code sample can be found on SAP Community. 
+
+See: [Getting your head into Cloud Application Programming model multitenancy](https://blogs.sap.com/2020/08/20/getting-your-head-into-cloud-application-programming-model-multitenancy/) for a detailed discussion.
 
 
 ## License
