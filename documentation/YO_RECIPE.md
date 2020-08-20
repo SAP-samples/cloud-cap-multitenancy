@@ -24,7 +24,7 @@ npm ls -g --depth=0 generator-sap-partner-eng
 ```
 yo sap-partner-eng
 ```
-
+!(images/842229F4-C86E-4072-AEA3-A8B1BC2D0301.png)
 ```
      _-----_     ╭──────────────────────────╮
     |       |    │    Welcome to the SAP    │
