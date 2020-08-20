@@ -4,9 +4,9 @@ SPDX-FileCopyrightText: 2020 Andrew Lunde <andrew.lunde@sap.com>
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# Cloud-CAP-Multitenancy
+# Cloud CAP Multitenancy
 
-Cloud Application Programming(CAP) sample code project with Multitenancy using Service Manger Tenant Data Separation.  
+Cloud Application Programming(CAP) sample code project with multitenancy using service manger tenant data separation.  
 
 ## Description
 
@@ -16,7 +16,7 @@ There are many disparate pieces of information found throughout the SAP document
 
 ## Requirements
 
- - A [SAP Cloud Platorm account](https://account.hana.ondemand.com/) or [SAP Cloud Platfrom Trial account](https://account.hanatrial.ondemand.com/cockpit)
+ - An [SAP Cloud Platform account](https://account.hana.ondemand.com/) or [SAP Cloud Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
 
  - Quota for HaaS, Application Runtime, SaaS, and Service Manager
  
@@ -58,9 +58,9 @@ File / Folder | Purpose
 
 ## Instructions
 
-Replace occurances of **<landscape>.hana.demand,com** with the landscape region variant for your account. 
+Replace **<landscape>.hana.demand,com** with the landscape region variant for your account. 
 
-See the [COMMANDS](COMMANDS.md) file for comands for building and deploying the project.
+See the [COMMANDS](COMMANDS.md) file for commands for building and deploying the project.
 
 
 
@@ -70,7 +70,7 @@ This example project contains no known issues.
 
 ## Limitations
 
- - The creation and assignment of Roles to Roll Collections and the assignment of Roll Collections is limited to global accounts with "Feature Set B".
+The creation and assignment of Roles to Roll Collections and the assignment of Roll Collections is limited to global accounts with "Feature Set B".
 
 
 ## How to obtain support
@@ -81,7 +81,7 @@ For additional support, [ask a question in SAP Community](https://answers.sap.co
  
 ## Documentation
 
-See the Multitenancy section under the Cookbook.  [Multitanancy](https://cap.cloud.sap/docs/guides/multitenancy)
+See the Multitenancy section under Cookbook in the CAP documentation.  [Multitanancy](https://cap.cloud.sap/docs/guides/multitenancy)
 
 Also the broader public [CAP Documentation](https://cap.cloud.sap/docs/).
 
@@ -94,7 +94,7 @@ An SAP Code Sample such as this is open software but is not quite a typical full
 
 ## To-Do (upcoming changes)
 
-Tools used throughout the development of this project are evolving and my change over time. This may result in discrepencies in the exact procedures or screen-clips in the accompanying blog posts. All efforts will be made to update the content in order to keep pace with the toolsing, but cannot be guarenteed.
+Tools used throughout the development of this project are evolving and my change over time. This may result in discrepancies in the exact procedures or screen-clips in the accompanying blog posts. All efforts will be made to update the content in order to keep pace with the tooling, but cannot be guaranteed.
 
 
 ## Learn more...
