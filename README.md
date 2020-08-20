@@ -52,13 +52,14 @@ File / Folder | Purpose
 `COMMANDS.md` | commands for building/deploying 
 `app/` | content for UI frontends go here
 `db/` | database definitions go here
+`documentation/` | supplemental documentation
 `srv/` | your service module code goes here
 `mta.yaml` | project structure and relationships
 `package.json` | project metadata and configuration
 
 ## Instructions
 
-Replace **<landscape>.hana.demand,com** with the landscape region variant for your account. 
+Replace **<landscape>.hana.demand.com** with the landscape region variant for your account. 
 
 See the [COMMANDS](COMMANDS.md) file for commands for building and deploying the project.
 

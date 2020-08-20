@@ -8,7 +8,7 @@ npm install -g yo
 ## Install this exact version of the partner engineering yeoman generator
 
 ```
-npm install -g generator-sap-partner-eng@0.3.0
+npm install -g generator-sap-partner-eng@0.3.1
 ```
 
 ## Verify generator version (if already installed)
@@ -17,41 +17,23 @@ npm install -g generator-sap-partner-eng@0.3.0
 npm ls -g --depth=0 generator-sap-partner-eng
 ```
 
-    generator-sap-partner-eng@0.3.0
+    generator-sap-partner-eng@0.3.1
 
 ## Run the yeoman generator to create the project folder and approuter
+**Note:** The answers given below were the ones used to create this sample code repository.  You may use your own component/file naming convention to make it easier to integrate this code the generated code into your project.
+
 
 ```
 yo sap-partner-eng
 ```
-!(images/842229F4-C86E-4072-AEA3-A8B1BC2D0301.png)
+![](images/842229F4-C86E-4072-AEA3-A8B1BC2D0301.png)
+
+
+Continue answering the prompts.
 ```
-     _-----_     ╭──────────────────────────╮
-    |       |    │    Welcome to the SAP    │
-    |--(o)--|    │    Partner Engineering   │
-   `---------´   │    project generator!    │
-    ( _´U`_ )    ╰──────────────────────────╯
-    /___A___\   /
-     |  ~  |    
-   __'.___.'__   
- ´   `  |° ´ Y ` 
-After you've generated your base MTA project you can enhance it with the following subgenerators.
- npx --node-arg=--inspect yo sap-partner-eng:subgen
-Add Jenkins support with           "?yo sap-partner-eng:jenkins"
-Add Deploy to XSA extension with   "?yo sap-partner-eng:deploy2xsa"
-Add a Manually managed schema with "?yo sap-partner-eng:db-sch"
-Add a HDB-style HDI container with "?yo sap-partner-eng:db-hdb"
-Add a CAP-style HDI container with "yo sap-partner-eng:db-cap"
-Add a HANA SecureStore with        "?yo sap-partner-eng:db-ss"
-Add a NodeJS based module with     "yo sap-partner-eng:module-nodejs"
-Add a Java based module with       "?yo sap-partner-eng:module-java"
-Add a Python based module with     "?yo sap-partner-eng:module-python"
-Add a Docker based module with     "?yo sap-partner-eng:module-docker"
-* = This module is not yet available or is in developoment.  YMMV.
 ? Enter your project folder name (will be created if necessary). cloud-cap-multitenancy
 ? Enter your project application name (will be used for defaults). capmt
-? Enter your project application description. Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separati
-on
+? Enter your project application description. Cloud Application Programming(CAP) with Multitenancy using Service Manger Tenant Data Separation
 ? Application router internal module name. capmt-app
 This list of domain names is based on the current 'cf domains' command.
  Domain name. cfapps.us10.hana.ondemand.com
@@ -60,9 +42,21 @@ This list of domain names is based on the current 'cf domains' command.
 ? Services definition path srv
 ? UAA resource name capmt-uaa
 ? UAA service name CAPMT_UAA
-Your project must be inside a folder named cloud-cap-multitenancy
-C02XN22LJGH6:git i830671$ cd cloud-cap-multitenancy/
-C02XN22LJGH6:cloud-cap-multitenancy i830671$ yo sap-partner-eng:db-cap
+...
+```
+Change into the folder just created and continue.
+```
+cd cloud-cap-multitenancy
+```
+## Run the yeoman db-cap sub-generator to create the db and srv folders and files
+
+
+Now from within the project folder run the sub-generator for db-cap with this command.
+```
+yo sap-partner-eng:db-cap
+```
+Continue answering the prompts.
+```
 Start Prompting.
 What is: foo!
 Using app_name: capmt
@@ -88,4 +82,14 @@ Implement the service module as nodejs/(java) module type.
 ? Managed(HDI) Service Name. CAPMT_SMC
 Using domain_name: cfapps.us10.hana.ondemand.com
 Using uaa_res_name: capmt-uaa
+    force .yo-rc.json
+   create db/.build.js
+   create db/data-model.cds
+   ...
+   create srv/package.json
+ conflict mta.yaml
+? Overwrite mta.yaml? (Answer "a" for Overwrite all)
+    force mta.yaml
+    force app/xs-app.json
+    force app/resources/index.html
 ```
