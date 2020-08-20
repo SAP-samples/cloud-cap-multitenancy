@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # Cloud CAP Multitenancy
 
-Cloud Application Programming(CAP) sample code project with multitenancy using service manger created HANA instances for tenant data separation.  
+Cloud Application Programming(CAP) sample code project with multitenancy using service manager created HANA instances for tenant data separation.  
 
 ## Description
 
