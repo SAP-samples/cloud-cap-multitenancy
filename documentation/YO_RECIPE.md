@@ -1,9 +1,14 @@
 # Yeoman Recipe for the project sample
 
-## Install the exact version of the yeoman generator
-
+## Yeoman is installed in the Business Application Studio or install it locally with..
+```
+npm install -g yo
 ```
 
+## Install this exact version of the partner engineering yeoman generator
+
+```
+npm install -g generator-sap-partner-eng@0.3.0
 ```
 
 ## Verify generator version (if already installed)
@@ -12,7 +17,7 @@
 npm ls -g --depth=0 generator-sap-partner-eng
 ```
 
-generator-sap-partner-eng@0.3.0
+    generator-sap-partner-eng@0.3.0
 
 ## Run the yeoman generator to create the project folder and approuter
 
@@ -20,9 +25,10 @@ generator-sap-partner-eng@0.3.0
 yo sap-partner-eng
 ```
 
+```
      _-----_     ╭──────────────────────────╮
     |       |    │    Welcome to the SAP    │
-    |--(o)--|    │    Partner Engineering  │
+    |--(o)--|    │    Partner Engineering   │
    `---------´   │    project generator!    │
     ( _´U`_ )    ╰──────────────────────────╯
     /___A___\   /
@@ -82,3 +88,4 @@ Implement the service module as nodejs/(java) module type.
 ? Managed(HDI) Service Name. CAPMT_SMC
 Using domain_name: cfapps.us10.hana.ondemand.com
 Using uaa_res_name: capmt-uaa
+```
