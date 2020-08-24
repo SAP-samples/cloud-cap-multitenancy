@@ -8,7 +8,7 @@ npm install -g yo
 ## Install this exact version of the partner engineering yeoman generator
 
 ```
-npm install -g generator-sap-partner-eng@0.3.1
+npm install -g generator-sap-partner-eng@0.3.6
 ```
 
 ## Verify generator version (if already installed)
@@ -17,7 +17,7 @@ npm install -g generator-sap-partner-eng@0.3.1
 npm ls -g --depth=0 generator-sap-partner-eng
 ```
 
-    generator-sap-partner-eng@0.3.1
+    generator-sap-partner-eng@0.3.6
 
 ## Run the yeoman generator to create the project folder and approuter
 **Note:** The answers given below were the ones used to create this sample code repository.  You may use your own component/file naming convention to make it easier to integrate this code the generated code into your project.

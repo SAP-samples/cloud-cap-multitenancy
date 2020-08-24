@@ -191,7 +191,7 @@ async function deleteRoute(tenantID, connectRes) {
                 // Get routeID with name subdomain-dev-mtxsm-app
                 let options2 = {
                     method: 'GET',
-                    url: appEnv.app.cf_api + '/v3/apps/' + connectRes.application_id + '/routes?hosts=' + subdomain + '-dev-capmt-app',
+                    url: appEnv.app.cf_api + '/v3/apps/' + connectRes.application_id + '/routes?hosts=' + subdomain + '-' + appEnv.app.space_name + '-capmt-app',
                     headers: {
                         'Authorization': 'Bearer ' + connectRes.access_token
                     }
