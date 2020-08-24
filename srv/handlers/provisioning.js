@@ -51,7 +51,7 @@ async function connectAPI() {
               // Get App Router Module's GUID
               let options3 = {
                   method: 'GET',
-                  url: appEnv.app.cf_api + '/v3/apps?organization_guids=' + appEnv.app.organization_id + '&space_guids=' + appEnv.app.space_id + '&names=' + services.registry.appName + '-app',
+                  url: appEnv.app.cf_api + '/v3/apps?organization_guids=' + appEnv.app.organization_id + '&space_guids=' + appEnv.app.space_id + '&names=' + 'capmt-app',
                   headers: {
                       'Authorization': 'Bearer ' + res2.data.access_token
                   }
@@ -191,7 +191,7 @@ async function deleteRoute(tenantID, connectRes) {
                 // Get routeID with name subdomain-dev-mtxsm-app
                 let options2 = {
                     method: 'GET',
-                    url: appEnv.app.cf_api + '/v3/apps/' + connectRes.application_id + '/routes?hosts=' + subdomain + '-dev-mtxsm-app',
+                    url: appEnv.app.cf_api + '/v3/apps/' + connectRes.application_id + '/routes?hosts=' + subdomain + '-dev-capmt-app',
                     headers: {
                         'Authorization': 'Bearer ' + connectRes.access_token
                     }
@@ -240,8 +240,10 @@ module.exports = (service) => {
     let appuri = "-dev-mtxsm-app.cfapps.us10.hana.ondemand.com";
 
     // assume app router name is same as saas-registry app name & ensure in lowercase & all _ converted to -
-    let tenant = req.data.subscribedSubdomain + '-' + appEnv.app.space_name.toLowerCase().replace(/_/g,'-') + '-' + services.registry.appName.toLowerCase().replace(/_/g,'-');
-    let tenantHost = tenant + '-app';
+    //let tenant = req.data.subscribedSubdomain + '-' + appEnv.app.space_name.toLowerCase().replace(/_/g,'-') + '-' + services.registry.appName.toLowerCase().replace(/_/g,'-');
+    let tenant = req.data.subscribedSubdomain + '-' + appEnv.app.space_name.toLowerCase().replace(/_/g,'-') + '-' + 'capmt-app';
+    //let tenantHost = tenant + '-app';
+    let tenantHost = tenant;
     let tenantURL = 'https:\/\/' + tenantHost + /\.(.*)/gm.exec(appEnv.app.application_uris[0])[0];
 
     console.log("tenantHost:" + tenantHost);

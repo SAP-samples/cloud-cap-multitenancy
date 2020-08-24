@@ -12,7 +12,7 @@ cf deploy mta_archives/capmt.mtar -f
 
 # Subsequent Build+Deploy Commands:
 ```
-mbt build -p=cf -t=mta_archives --mtar=capmt.mtar ; cf deploy mta_archives/capmt.mtar -f
+mbt build -p=cf -t=mta_archives --mtar=capmt.mtar ; cf deploy mta_archives/capmt.mtar -f ; ./CF_CREDS.sh
 ```
 
 # Undeploy Command:
