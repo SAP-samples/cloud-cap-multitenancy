@@ -181,6 +181,9 @@ resources:
       service-plan: container
       service-name: CAPMT_SMC
       polling_timeout_seconds: 240
+      config:
+         acquireTimeoutMillis: max
+         polling_timeout_seconds: 480
 
 # Multitenant Registration(using CAP-MTX style url)
 # Manually add route after tenant subscription
@@ -195,8 +198,8 @@ resources:
       service-name: CAPMT_REG
       config:
          xsappname: ~{capmt-uaa/XSAPPNAME}
-         appName: capmt
-         displayName: capmt
+         appName: capmt-${org}-${space}
+         displayName: capmt-${org}-${space}
          description: 'capmt Multitenant App'
          category: 'capmt Category'
          appUrls:

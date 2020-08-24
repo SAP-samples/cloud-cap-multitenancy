@@ -89,6 +89,9 @@
     "odata": {
       "version": "v4"
     },
+    "hana": {
+      "deploy-format": "hdbtable"
+    },
     "requires": {
       "db": {
         "kind": "hana",
