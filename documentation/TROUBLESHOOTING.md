@@ -48,6 +48,16 @@ If you finally get to the app and when you click on the links you get an unautho
 
 Even if you do this for your own user, you will have to sign out of Cloud Platform and sign back in again to get the new roll collection effective for your user.
 
+## Other stuff:
+
+Watch the logs while attempting a subscription.  If the logs are to verbose, you can turn that down by commenting out **NODE_DEBUG: 'instance-manager'** in the mta.yaml file.  You should see messages that have this in them.
+```
+[INFO ][ON_UPDATE_TENANT] XXX_Starting Subscription for capmt-sub1
+```
+You can also just watch for log entries with 'XXX' in them.
+```
+cf logs capmt-srv | grep -A 2 XXX
+```
 
 
 
