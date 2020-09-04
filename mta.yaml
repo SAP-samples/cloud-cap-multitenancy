@@ -154,12 +154,12 @@ resources:
             scope-references:
              - "$XSAPPNAME.Administrator"
           - name: User
-            description: User
+            description: User Required
             scope-references:
              - "$XSAPPNAME.User"
          oauth2-configuration:
             redirect-uris: 
-             - "http*://*.cfapps.us10.hana.ondemand.com/**"
+             - "http*://*.${default-domain}/**"
 
 ### New Resources Here ###
 
