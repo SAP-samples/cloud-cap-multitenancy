@@ -241,6 +241,7 @@ module.exports = (service) => {
 
     // assume app router name is same as saas-registry app name & ensure in lowercase & all _ converted to -
     //let tenant = req.data.subscribedSubdomain + '-' + appEnv.app.space_name.toLowerCase().replace(/_/g,'-') + '-' + services.registry.appName.toLowerCase().replace(/_/g,'-');
+    // WARNING: If you changed the appName in the saas-registry definition in the mta.yaml file, you may need to adjust the tennant.
     let tenant = req.data.subscribedSubdomain + '-' + appEnv.app.space_name.toLowerCase().replace(/_/g,'-') + '-' + 'capmt-app';
     //let tenantHost = tenant + '-app';
     let tenantHost = tenant;

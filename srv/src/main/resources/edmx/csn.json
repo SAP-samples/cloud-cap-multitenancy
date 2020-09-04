@@ -1,4 +1,5 @@
 {
+  "namespace": "my.bookshop",
   "definitions": {
     "CatalogService": {
       "@source": "srv/cat-service.cds",
@@ -2346,7 +2347,6 @@
   },
   "$version": "1.0",
   "meta": {
-    "creator": "CDS Compiler v1.35.0"
-  },
-  "namespace": "my.bookshop"
+    "creator": "CDS Compiler v1.39.0"
+  }
 }
