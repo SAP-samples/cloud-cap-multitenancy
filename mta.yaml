@@ -97,7 +97,7 @@ modules:
          application: ${app-name}
 # CDS-MTX
    properties:
-      TENANT_HOST_PATTERN: '^(.*)-${space}-${app-name}.cfapps.us10.hana.ondemand.com'
+      TENANT_HOST_PATTERN: '^(.*)-${space}-${app-name}.${default-domain}'
    requires:
    # cf bind-service capmt-app CAPMT_UAA
     - name: capmt-uaa
@@ -203,7 +203,7 @@ resources:
          description: 'capmt Multitenant App'
          category: 'capmt Category'
          appUrls:
-            onSubscription: https://${org}-${space}-capmt-srv.cfapps.us10.hana.ondemand.com/mtx/v1/provisioning/tenant/{tenantId}
+            onSubscription: https://${org}-${space}-capmt-srv.${default-domain}/mtx/v1/provisioning/tenant/{tenantId}
             onSubscriptionAsync: false
             onUnSubscriptionAsync: false
             #callbackTimeoutMillis: 300000
