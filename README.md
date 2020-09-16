@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # Cloud CAP Multitenancy
 
-Cloud Application Programming(CAP) sample code project with multitenancy using service manager created HANA containers for tenant data isolation.  
+Cloud Application Programming(CAP) Node.JS sample code project with multitenancy using service manager created HANA containers for tenant data isolation.  
 
 ## Description
 
@@ -15,6 +15,8 @@ This repository contains a complete Multi-Target Application (MTA) sample projec
 
 There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Cloud Platform.
 
+This project is implemented completely in the Node.JS programming language.  A java programing language multitenant sample code project can be found at [https://github.com/SAP-samples/cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java).  See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
+ 
 ## Requirements
 
  - An [SAP Cloud Platform account](https://account.hana.ondemand.com/) or [SAP Cloud Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
