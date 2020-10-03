@@ -1,0 +1,8 @@
+_schema-version: '3.1'
+ID: capmt.extension
+extends: capmt
+
+resources:
+  - name: capmt-hdi
+    parameters:
+      service: hanatrial

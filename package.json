@@ -16,7 +16,8 @@
   "scripts": {
     "build": "cds build/all --clean",
     "deploy": "cds deploy",
-    "start": "cds run"
+    "start": "cds run",
+    "deploy:cf:trial": "cf deploy mta_archives/capmt.mtar -e sapcp-cf-trial.mtaext"
   },
   "cds": {
     "comment": "Anything defined outside of a [profile] will apply to all profiles.",
