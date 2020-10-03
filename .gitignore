@@ -5,7 +5,6 @@ connection.properties
 default-*.json
 gen/
 node_modules/
-package-lock.json
 target/
 
 # Web IDE, App Studio
@@ -31,3 +30,5 @@ mta_archives/
 
 #Misc
 CF_CREDS.sh
+Makefile*
+.env
