@@ -1,0 +1,14 @@
+### Get Access Token
+# @name requestAccessToken
+POST {{$dotenv url}}/oauth/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic {{$dotenv clientid}}:{{$dotenv clientsecret}}
+
+grant_type=client_credentials&client_id={{$dotenv clientid}}
+
+### Fill Variables from Response
+@bearerToken = {{requestAccessToken.response.body.access_token}}
+
+### Read Application Registration Details
+GET {{$dotenv saas_registry_url}}/saas-manager/v1/application
+Authorization: {{bearerToken}}
