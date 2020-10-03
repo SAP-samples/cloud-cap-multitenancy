@@ -27,7 +27,7 @@ modules:
    path: db
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -42,7 +42,7 @@ modules:
    type: nodejs
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -79,7 +79,7 @@ modules:
    path: app
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
