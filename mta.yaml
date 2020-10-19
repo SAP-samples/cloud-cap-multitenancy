@@ -27,7 +27,7 @@ modules:
    path: db
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -42,7 +42,7 @@ modules:
    type: nodejs
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -52,9 +52,9 @@ modules:
       EXIT: 1  # required by deploy.js task to terminate
       SAP_JWT_TRUST_ACL: [{"clientid":"*","identityzone":"sap-provisioning"}]  # Trust between server and SaaS Manager
       NODE_DEBUG: 'instance-manager'
-      # cf set-env mtxsm-srv CF_API_USER 'user@domain.com'
-      # cf set-env mtxsm-srv CF_API_PW 'xxxxxx'
-      # cf restage mtxsm-srv
+      # cf set-env capmt-srv CF_API_USER $CF_API_USER
+      # cf set-env capmt-srv CF_API_PW $CF_API_PW
+      # cf restage capmt-srv
       CF_API_USER: user@domain.com
       CF_API_PW: xxxxxx
    parameters:
@@ -79,7 +79,7 @@ modules:
    path: app
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json","package-lock.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
