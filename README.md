@@ -40,10 +40,21 @@ modules:
       CF_API_PW: xxxxxx
 ...
 ```
- - OR - after deployment, update the environment for the capmt-srv module in the CF_CDEDS.sh script.
- ```
-cf set-env capmt-srv CF_API_USER 'user@domain.com'
-cf set-env capmt-srv CF_API_PW 'YourPassword'
+ - OR - after deployment, 
+ 1. Create a file called .env with the following.
+```
+CF_API_USER=<Your User>
+CF_API_PW=<Your Password>
+```
+ 2. Run this command to set the ENVIRONMENT with your specifics.
+```
+set -o allexport; source .env; set +o allexport
+```
+ 
+ 3. Update the environment for the capmt-srv module in the CF_CDEDS.sh script.
+```
+cf set-env capmt-srv CF_API_USER $CF_API_USER
+cf set-env capmt-srv CF_API_PW $CF_API_PW
 cf restage capmt-srv
 ```
 
