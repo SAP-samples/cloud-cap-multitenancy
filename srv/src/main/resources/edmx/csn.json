@@ -1952,6 +1952,20 @@
         }
       }
     },
+    "my.bookshop.config": {
+      "kind": "entity",
+      "elements": {
+        "name": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "value": {
+          "type": "cds.String",
+          "length": 24
+        }
+      }
+    },
     "sap.common": {
       "kind": "context"
     },

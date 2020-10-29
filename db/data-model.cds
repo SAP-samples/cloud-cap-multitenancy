@@ -20,3 +20,8 @@ entity Orders : managed {
   country : Country;
   amount  : Integer;
 }
+
+entity config {
+  key name : String(12);
+  value    : String(24);
+}

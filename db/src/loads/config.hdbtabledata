@@ -1,0 +1,22 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"column_mappings": {
+			"NAME": "Name",
+			"VALUE": "Value"
+		},
+		"import_settings": {
+			"import_columns": [
+				"NAME",
+				"VALUE"
+			],
+			"include_filter": []
+		},
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "config.csv",
+			"has_header": true
+		},
+		"target_table": "MY_BOOKSHOP_CONFIG"
+	}]
+}
