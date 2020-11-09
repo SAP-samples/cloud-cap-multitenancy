@@ -163,6 +163,7 @@
       </Annotations>
       <Annotations Target="CatalogService.Countries/code">
         <Annotation Term="Common.Label" String="Maakoodi"/>
+        <Annotation Term="Common.Text" Path="name"/>
       </Annotations>
       <Annotations Target="CatalogService.Countries_texts/name">
         <Annotation Term="Common.Label" String="Nimi"/>
@@ -172,6 +173,7 @@
       </Annotations>
       <Annotations Target="CatalogService.Countries_texts/code">
         <Annotation Term="Common.Label" String="Maakoodi"/>
+        <Annotation Term="Common.Text" Path="name"/>
       </Annotations>
       <Annotations Target="CatalogService.EntityContainer/Orders">
         <Annotation Term="Capabilities.DeleteRestrictions">
