@@ -1,0 +1,110 @@
+const CONSTANTS = require('../../config/constants');
+const { deploy, clean_env } = require('@sap/hdi-deploy/library');
+const DeploymentError = require('../errors/deployment_error');
+const fs = require('fs-extra');
+const path = require('path');
+const Logger = require('./logger');
+
+class DeployHelper {
+
+
+    static async deployModel(tenantId, dbDir, instanceCredentials, undeploy = false, undeployWhitelist = [], autoUndeploy = false, logCollector = null) {
+
+        const logger = new Logger('DEPLOY_HELPER');
+        logger.logCollector = logCollector;
+
+        if(!dbDir) {
+            logger.info('No db dir set - skipping deployment');
+            return;
+        }
+
+        logger.debug('db dir is: ' + dbDir);
+        logger.debug('undeploy whitelist is: ' + undeployWhitelist);
+
+        await fs.copy(path.join(CONSTANTS.TEMPLATES_DIR, '.hdiconfig'), path.join(dbDir, 'src', '.hdiconfig'));
+
+        logger.info('Deploying using internal deployer');
+
+        await this._deployModelInternal(dbDir, instanceCredentials, undeploy, undeployWhitelist, autoUndeploy, logger);
+    }
+
+
+    static async _deployModelInternal(dbDir, instanceCredentials, undeploy, undeployWhitelist, autoUndeploy, logger) {
+
+        if(undeploy) {
+            logger.debug('Writing undeploy.json because undeploy=true');
+            await DeployHelper._writeUndeployJson(dbDir, undeployWhitelist, logger);
+        } else {
+            logger.debug('Not writing undeploy.json because undeploy=false');
+        }
+
+        const deployerEnv = this._prepareEnv(instanceCredentials, autoUndeploy);
+
+        logger.info('\n--------------------------------[HDI-DEPLOY-OUTPUT]---------------');
+        logger.debug('Using environment %s', deployerEnv.HDI_DEPLOY_OPTIONS);
+
+        await this._deployPromise(dbDir, deployerEnv, logger);
+
+        logger.info('--------------------------------[HDI-DEPLOY-OUTPUT]---------------');
+        logger.info('Internal deployment finished');
+    }
+
+
+    static async _writeUndeployJson(dbDir, undeployWhitelist, logger) {
+        const undeployPath = path.join(dbDir, 'undeploy.json');
+        let undeployWhitelistToWrite = undeployWhitelist;
+
+        if(await fs.pathExists(undeployPath)) {
+            logger.debug('Merging undeploy whitelists');
+            const undeployJson = await fs.readFile(undeployPath);
+            try {
+                const undeploy = JSON.parse(undeployJson);
+                const mergedUndeploy = new Set(undeployWhitelist.concat(undeploy));
+                undeployWhitelistToWrite = Array.from(mergedUndeploy);
+            } catch(error) {
+                const message = `Could not parse undeploy.json of base model (${undeployPath})`;
+                logger.error(error, message);
+                throw new DeploymentError(message, error);
+            }
+        }
+
+        await fs.writeFile(undeployPath, JSON.stringify(undeployWhitelistToWrite, null, 4));
+    }
+
+
+    static _prepareEnv(instanceCredentials, autoUndeploy) {
+
+        let deployerEnv = JSON.parse(JSON.stringify(process.env));
+        if(clean_env) {
+            deployerEnv = clean_env(deployerEnv);
+        }
+
+        deployerEnv.VCAP_SERVICES = JSON.stringify({ hana: [instanceCredentials] });
+
+        deployerEnv.HDI_DEPLOY_OPTIONS = JSON.stringify({ "auto_undeploy": autoUndeploy });
+
+        return deployerEnv;
+    }
+
+
+    static _deployPromise(dir, env, logger) {
+        return new Promise((resolve, reject) => {
+            deploy(dir, env, (error, response) => {
+                if (error) {
+                    logger.error(error);
+                    return reject(error);
+                }
+                if (response && response.exitCode && response.exitCode > 0) {
+                    return reject(new Error('HDI deployment failed'));
+                }
+                return resolve();
+            }, {
+                stdoutCB: data => logger.info(data),
+                stderrCB: error => logger.error(error)
+            });
+        });
+    }
+
+}
+
+module.exports = DeployHelper;

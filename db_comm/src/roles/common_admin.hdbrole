@@ -1,0 +1,16 @@
+{
+	"role":{
+		"name": "common_admin",
+		"schema_privileges": [{
+		   "privileges": ["SELECT METADATA",
+		    			  "SELECT CDS METADATA",
+		    			  "SELECT",
+		    			  "INSERT",
+		    			  "EXECUTE",
+		    			  "DELETE",
+		    			  "UPDATE",
+		    			  "CREATE TEMPORARY TABLE"
+		   ]
+		}]
+      }
+}

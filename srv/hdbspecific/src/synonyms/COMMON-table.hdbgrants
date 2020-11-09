@@ -1,0 +1,14 @@
+{
+	"POC_log-table-grantor": {
+		"object_owner": { 
+			"container_roles": [
+				"POC_XXX::external_access_g#"
+			]
+		},
+		"application_user": {
+			"container_roles": [
+				"POC_XXX::external_access"
+			]
+		}
+	}
+}

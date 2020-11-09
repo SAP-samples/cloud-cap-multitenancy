@@ -21,13 +21,13 @@ modules:
 
 ### New Modules Here ###
 
-# cf push capmt-hdb -p db -k 512M -m 512M
+# cf push capmt-hdb -p db_comm -k 512M -m 512M -u none ; sleep 20 ; cf stop capmt-hdb
  - name: capmt-hdb
    type: hdb
-   path: db
+   path: db_comm
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: [".DS_Store", "default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -37,12 +37,12 @@ modules:
    requires:
     - name: capmt-hdi
 
-# cf push capmt-srv -p srv -n ${org}-${space}-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M
+# cds build/all ; cf push capmt-srv -p srv -n partner-eng-prov-dev-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M -b nodejs_buildpack -c "node --inspect server.js"
  - name: capmt-srv
    type: nodejs
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: [".DS_Store", "default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -55,11 +55,16 @@ modules:
       # cf set-env capmt-srv CF_API_USER $CF_API_USER
       # cf set-env capmt-srv CF_API_PW $CF_API_PW
       # cf restage capmt-srv
-      CF_API_USER: user@domain.com
-      CF_API_PW: xxxxxx
+      #CF_API_USER: user@domain.com
+      #CF_API_PW: xxxxxx
+      #SERVICE_REPLACEMENTS:
+      # - name: svc-reps
+      #   key: "POC_log-table-grantor"
+      #   service: '~{POC_MAST-table-grantor-service}'
    parameters:
       memory: 512M
       disk-quota: 1024M
+      
       #host: ${org}-${space}-capmt-srv
       #domain: cfapps.us10.hana.ondemand.com
    provides:
@@ -67,10 +72,15 @@ modules:
       properties:
          url: ${default-url}
    requires:
-    - name: capmt-hdi
     - name: capmt-uaa
     - name: capmt-reg
     - name: capmt-smc
+    - name: capmt-hdi
+    - name: POC_XXX-table-grantor
+      group: SERVICE_REPLACEMENTS
+      properties:
+         key: POC_log-table-grantor
+         service: '~{POC_MAST-table-grantor-service}'
 
 
 # cf push capmt-app -p app -n capmt-app -d cfapps.us10.hana.ondemand.com -k 256M -m 256M
@@ -79,7 +89,7 @@ modules:
    path: app
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: [".DS_Store", "default-env.json", "node_modules/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -170,6 +180,8 @@ resources:
       service-name: CAPMT_HDI
       config:
          schema: 
+   properties:
+      common-container-name: '${service-name}'      
 
 # CAP-MTX Managed HANA (Internal Service Manager)
  - name: capmt-smc
@@ -208,5 +220,9 @@ resources:
             onUnSubscriptionAsync: false
             #callbackTimeoutMillis: 300000
 
-
-
+ - name: POC_XXX-table-grantor
+   type: org.cloudfoundry.existing-service
+   properties:
+      POC_MAST-table-grantor-service: '${service-name}'
+   parameters:
+      service-name: CAPMT_HDI

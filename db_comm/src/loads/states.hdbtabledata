@@ -1,0 +1,24 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"column_mappings": {
+			"NAME": "State",
+			"ABBREV": "Abbrev",
+			"CODE": "Code"
+		},
+		"import_settings": {
+			"import_columns": [
+				"NAME",
+				"ABBREV",
+				"CODE"
+			],
+			"include_filter": []
+		},
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "states.csv",
+			"has_header": true
+		},
+		"target_table": "COMMON_STATES"
+	}]
+}
