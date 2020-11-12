@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ORDERS_WEBIDE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ORDERS_WEBIDE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MY_BOOKSHOP_ORDERSWITHSTATE">
+    <resourceUri>MY_BOOKSHOP_ORDERSWITHSTATE</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="MY_BOOKSHOP_ORDERSWITHSTATE">
+  <attributes>
+    <attribute id="TITLE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="MY_BOOKSHOP_ORDERSWITHSTATE" columnName="TITLE"/>
+    </attribute>
+    <attribute id="SOLD_ON" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SOLD_ON"/>
+      <keyMapping columnObjectName="MY_BOOKSHOP_ORDERSWITHSTATE" columnName="SOLD_ON"/>
+    </attribute>
+    <attribute id="STATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STATE"/>
+      <keyMapping columnObjectName="MY_BOOKSHOP_ORDERSWITHSTATE" columnName="STATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="QUANTITY" order="2" aggregationType="sum" engineAggregation="count" measureType="simple">
+      <descriptions defaultDescription="QUANTITY"/>
+      <measureMapping columnObjectName="MY_BOOKSHOP_ORDERSWITHSTATE" columnName="QUANTITY"/>
+    </measure>
+    <measure id="PRICE_USD" order="4" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="PRICE_USD"/>
+      <measureMapping columnObjectName="MY_BOOKSHOP_ORDERSWITHSTATE" columnName="PRICE_USD"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
