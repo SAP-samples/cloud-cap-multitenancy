@@ -34,3 +34,5 @@ Makefile*
 .env
 
 # hdb_sub
+
+/mta_archives/
