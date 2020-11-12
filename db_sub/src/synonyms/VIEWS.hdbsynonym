@@ -1,0 +1,7 @@
+{
+  "MY_BOOKSHOP_ORDERS_VIEW" : {
+    "target": {
+      "object" : "ORDERS_VIEW"
+    }
+  }
+}

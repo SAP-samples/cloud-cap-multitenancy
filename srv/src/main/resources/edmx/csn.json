@@ -223,6 +223,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -316,6 +319,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -449,8 +455,26 @@
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
         },
-        "amount": {
+        "sold_on": {
+          "type": "cds.Date"
+        },
+        "quantity": {
           "type": "cds.Integer"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "state": {
+          "type": "cds.Association",
+          "target": "my.bookshop.States",
+          "keys": [
+            {
+              "ref": [
+                "code"
+              ],
+              "$generatedFieldName": "state_code"
+            }
+          ]
         },
         "book_ID": {
           "type": "cds.Integer",
@@ -462,6 +486,11 @@
           "@odata.foreignKey4": "country",
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
+        },
+        "state_code": {
+          "type": "cds.String",
+          "length": 2,
+          "@odata.foreignKey4": "state"
         }
       },
       "$syntax": "projection",
@@ -519,14 +548,14 @@
       "@Common.Label": "{i18n>UserID}"
     },
     "cuid": {
-      "kind": "entity",
-      "abstract": true,
+      "kind": "type",
       "elements": {
         "ID": {
           "key": true,
           "type": "cds.UUID"
         }
-      }
+      },
+      "$syntax": "aspect"
     },
     "localized.CatalogService.Authors": {
       "kind": "entity",
@@ -705,6 +734,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -875,8 +907,26 @@
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
         },
-        "amount": {
+        "sold_on": {
+          "type": "cds.Date"
+        },
+        "quantity": {
           "type": "cds.Integer"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "state": {
+          "type": "cds.Association",
+          "target": "my.bookshop.States",
+          "keys": [
+            {
+              "ref": [
+                "code"
+              ],
+              "$generatedFieldName": "state_code"
+            }
+          ]
         },
         "book_ID": {
           "type": "cds.Integer",
@@ -888,6 +938,11 @@
           "@odata.foreignKey4": "country",
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
+        },
+        "state_code": {
+          "type": "cds.String",
+          "length": 2,
+          "@odata.foreignKey4": "state"
         }
       }
     },
@@ -1168,8 +1223,26 @@
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
         },
-        "amount": {
+        "sold_on": {
+          "type": "cds.Date"
+        },
+        "quantity": {
           "type": "cds.Integer"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "state": {
+          "type": "cds.Association",
+          "target": "my.bookshop.States",
+          "keys": [
+            {
+              "ref": [
+                "code"
+              ],
+              "$generatedFieldName": "state_code"
+            }
+          ]
         },
         "book_ID": {
           "type": "cds.Integer",
@@ -1181,6 +1254,94 @@
           "@odata.foreignKey4": "country",
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
+        },
+        "state_code": {
+          "type": "cds.String",
+          "length": 2,
+          "@odata.foreignKey4": "state"
+        }
+      }
+    },
+    "localized.my.bookshop.OrdersWithState": {
+      "kind": "entity",
+      "@odata.draft.enabled": false,
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "localized.my.bookshop.Orders"
+            ]
+          },
+          "columns": [
+            {
+              "ref": [
+                "Orders",
+                "ID"
+              ],
+              "as": "ID"
+            },
+            {
+              "ref": [
+                "Orders",
+                "book",
+                "title"
+              ],
+              "as": "Title"
+            },
+            {
+              "ref": [
+                "Orders",
+                "quantity"
+              ],
+              "as": "Quantity"
+            },
+            {
+              "ref": [
+                "Orders",
+                "sold_on"
+              ],
+              "as": "Sold_On"
+            },
+            {
+              "ref": [
+                "Orders",
+                "Price_USD"
+              ],
+              "as": "Price_USD"
+            },
+            {
+              "ref": [
+                "Orders",
+                "state",
+                "name"
+              ],
+              "as": "State"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "Title": {
+          "@Core.Computed": true,
+          "localized": true,
+          "type": "cds.String"
+        },
+        "Quantity": {
+          "type": "cds.Integer"
+        },
+        "Sold_On": {
+          "type": "cds.Date"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "State": {
+          "type": "cds.String",
+          "length": 24
         }
       }
     },
@@ -1264,6 +1425,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -1404,6 +1568,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -1549,6 +1716,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 14,
@@ -1818,6 +1988,27 @@
         }
       }
     },
+    "my.bookshop.Currencies": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 128
+        },
+        "UperUSD": {
+          "type": "cds.Double"
+        },
+        "USDperU": {
+          "type": "cds.Double"
+        }
+      }
+    },
     "my.bookshop.Orders": {
       "kind": "entity",
       "includes": [
@@ -1918,8 +2109,26 @@
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
         },
-        "amount": {
+        "sold_on": {
+          "type": "cds.Date"
+        },
+        "quantity": {
           "type": "cds.Integer"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "state": {
+          "type": "cds.Association",
+          "target": "my.bookshop.States",
+          "keys": [
+            {
+              "ref": [
+                "code"
+              ],
+              "$generatedFieldName": "state_code"
+            }
+          ]
         },
         "book_ID": {
           "type": "cds.Integer",
@@ -1931,6 +2140,151 @@
           "@odata.foreignKey4": "country",
           "@Core.Description": "{i18n>CountryCode.Description}",
           "@Common.Label": "{i18n>Country}"
+        },
+        "state_code": {
+          "type": "cds.String",
+          "length": 2,
+          "@odata.foreignKey4": "state"
+        }
+      }
+    },
+    "my.bookshop.OrdersWithState": {
+      "kind": "entity",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "my.bookshop.Orders"
+            ]
+          },
+          "columns": [
+            {
+              "ref": [
+                "Orders",
+                "ID"
+              ],
+              "as": "ID"
+            },
+            {
+              "ref": [
+                "Orders",
+                "book",
+                "title"
+              ],
+              "as": "Title"
+            },
+            {
+              "ref": [
+                "Orders",
+                "quantity"
+              ],
+              "as": "Quantity"
+            },
+            {
+              "ref": [
+                "Orders",
+                "sold_on"
+              ],
+              "as": "Sold_On"
+            },
+            {
+              "ref": [
+                "Orders",
+                "Price_USD"
+              ],
+              "as": "Price_USD"
+            },
+            {
+              "ref": [
+                "Orders",
+                "state",
+                "name"
+              ],
+              "as": "State"
+            }
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "Title": {
+          "localized": true,
+          "type": "cds.String"
+        },
+        "Quantity": {
+          "type": "cds.Integer"
+        },
+        "Sold_On": {
+          "type": "cds.Date"
+        },
+        "Price_USD": {
+          "type": "cds.Double"
+        },
+        "State": {
+          "type": "cds.String",
+          "length": 24
+        }
+      },
+      "$syntax": "projection"
+    },
+    "my.bookshop.Orders_View": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "title": {
+          "type": "cds.String",
+          "length": 5000
+        },
+        "quantity": {
+          "type": "cds.Integer"
+        },
+        "sold_on": {
+          "type": "cds.Date"
+        },
+        "state_code": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "price_USD": {
+          "type": "cds.Double"
+        },
+        "total_USD": {
+          "type": "cds.Double"
+        },
+        "total_EUR": {
+          "type": "cds.Double"
+        },
+        "total_VES": {
+          "type": "cds.Double"
+        },
+        "total_GLD": {
+          "type": "cds.Double"
+        }
+      }
+    },
+    "my.bookshop.States": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "elements": {
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "abbrev": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 24
         }
       }
     },
@@ -2008,6 +2362,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -2091,6 +2448,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2128,6 +2488,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -2216,6 +2579,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2253,6 +2619,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "key": true,
           "type": "cds.String",
           "length": 14,
@@ -2336,6 +2705,9 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
+          "@Common.Text": {
+            "=": "name"
+          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2361,6 +2733,7 @@
   },
   "$version": "1.0",
   "meta": {
-    "creator": "CDS Compiler v1.39.0"
+    "creator": "CDS Compiler v1.43.0",
+    "flavor": "inferred"
   }
 }

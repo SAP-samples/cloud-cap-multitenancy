@@ -40,7 +40,7 @@ modules:
    requires:
     - name: capmt-hdi
 
-# cf push capmt-rtc -p db_sub -k 512M -m 512M -u none ; sleep 20 ; cf stop capmt-rtc
+# cds build/all ; rm -rf db_sub ; cp -avp db db_sub ; cp -avp srv/hdbspecific/ db_sub/ ; cf push capmt-rtc -p db_sub -k 512M -m 512M -u none -b nodejs_buildpack ; sleep 30 ; cf stop capmt-rtc
  - name: capmt-rtc
    type: hdb
    path: db_sub
@@ -64,7 +64,7 @@ modules:
          key: POC_log-table-grantor
          service: '~{POC_MAST-table-grantor-service}'
 
-# cds build/all ; cf push capmt-srv -p srv -n partner-eng-prov-dev-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M -b nodejs_buildpack -c "node --inspect server.js"
+# cds build/all ; cf push capmt-srv -p srv -n partner-eng-prov-dev-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M -b nodejs_buildpack -c "node server.js"
  - name: capmt-srv
    type: nodejs
    build-parameters:

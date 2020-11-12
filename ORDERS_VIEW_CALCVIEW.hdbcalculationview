@@ -26,9 +26,13 @@
       <descriptions defaultDescription="Price_USD"/>
       <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_USD"/>
     </measure>
-    <measure id="Price_GLD" order="4" aggregationType="sum" engineAggregation="avg" measureType="simple">
+    <measure id="Price_GLD" order="4" aggregationType="max" measureType="simple">
       <descriptions defaultDescription="Price_GLD"/>
       <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_GLD"/>
+    </measure>
+    <measure id="Price_VES" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Price_VES"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_VES"/>
     </measure>
   </baseMeasures>
   <calculatedMeasures/>
