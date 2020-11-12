@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ORDERS_CALCVIEW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
-<descriptions defaultDescription="ORDERS_CALCVIEW"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ORDERS_VIEW_CALCVIEW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ORDERS_VIEW_CALCVIEW"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -18,15 +18,15 @@
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="Price_USD" order="2" aggregationType="sum" measureType="simple">
-      <descriptions defaultDescription="Price_USD"/>
-      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_USD"/>
-    </measure>
-    <measure id="Price_EUR" order="3" aggregationType="sum" measureType="simple">
+    <measure id="Price_EUR" order="2" aggregationType="sum" engineAggregation="avg" measureType="simple">
       <descriptions defaultDescription="Price_EUR"/>
       <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_EUR"/>
     </measure>
-    <measure id="Price_GLD" order="4" aggregationType="sum" measureType="simple">
+    <measure id="Price_USD" order="3" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Price_USD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_USD"/>
+    </measure>
+    <measure id="Price_GLD" order="4" aggregationType="sum" engineAggregation="avg" measureType="simple">
       <descriptions defaultDescription="Price_GLD"/>
       <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_GLD"/>
     </measure>
