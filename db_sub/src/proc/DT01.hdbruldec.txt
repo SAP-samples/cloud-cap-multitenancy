@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dtmodel:decisionTableModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:alias="http://www.sap.com/ndb/Rules/Alias" xmlns:core="http://www.sap.com/ndb/Rules/Core" xmlns:dtmodel="http://www.sap.com/ndb/DecisionTableModel1.ecore" xmlns:table="http://www.sap.com/ndb/Rules/DecisionTable" schemaVersion="1.0" id="DT01" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled">
+  <origin/>
+  <descriptions/>
+  <metadata changedAt="2020-09-10 17:16:23.093"/>
+  <defaultSchema/>
+  <dataSources/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="879625EF3E7D492ABA06AD10FB21C91D" columnObjectName="orders"/>
+      </tableProxy>
+    </tableProxies>
+    <joins/>
+    <layout>
+      <shapes>
+        <shape modelObjectName="orders" modelObjectNameSpace="879625EF3E7D492ABA06AD10FB21C91D" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <dtmodel:variables/>
+  <alias:aliasset alias:guid="AS17479d677d4xc5e95">
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL17479dad1a3x550d8" alias:visible="true" alias:columnName="origin" alias:columnObjectName="orders" alias:columntype="NVARCHAR" alias:modelType="table" alias:schemaName="879625EF3E7D492ABA06AD10FB21C91D">
+      <descriptions defaultDescription="origin"/>
+    </alias:basealias>
+    <alias:basealias xsi:type="alias:TableAlias" id="TBLAL17479dd78f7x9598a" alias:visible="true" alias:columnName="quantity" alias:columnObjectName="orders" alias:columntype="INTEGER" alias:modelType="table" alias:schemaName="879625EF3E7D492ABA06AD10FB21C91D">
+      <descriptions defaultDescription="quantity"/>
+    </alias:basealias>
+  </alias:aliasset>
+  <table:decisiontable table:guid="DT17479d677d9xaf11" table:name="DT01">
+    <table:conditionstub table:id="CS17479dbe252x842a1" table:conditionstubtype="regular" table:type="NVARCHAR">
+      <core:lvalue>
+        <core:simpleexp core:type="NVARCHAR">
+          <core:abstractreference xsi:type="core:TableReference" core:columnName="origin" core:columnObjectName="orders" core:columnType="NVARCHAR" core:modelType="table" core:schemaName="879625EF3E7D492ABA06AD10FB21C91D"/>
+        </core:simpleexp>
+      </core:lvalue>
+      <table:cv table:id="CV17479df78b2xd9f92y6">
+        <core:rangeexpression xsi:type="core:SimpleRangeExpression" core:comparator="Equals">
+          <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="NVARCHAR">
+            <core:primitive core:value="GA"/>
+          </core:simpleexp>
+        </core:rangeexpression>
+      </table:cv>
+    </table:conditionstub>
+    <table:actionstub table:id="AS17479de8be3x7cec" table:actionstubtype="regular">
+      <core:abstractaction xsi:type="core:TableAction" core:columnName="quantity" core:columnObjectName="orders" core:columnType="INTEGER" core:modelType="table" core:schemaName="879625EF3E7D492ABA06AD10FB21C91D"/>
+      <table:av table:ce-id-refs="CV17479df78b2xd9f92y6" table:id="AV17479e04217xd79ec">
+        <core:simpleexp core:closebracket="0" core:openbracket="0" core:operator="" core:type="INTEGER">
+          <core:primitive core:value="99"/>
+        </core:simpleexp>
+      </table:av>
+    </table:actionstub>
+    <table:tablelayout>
+      <table:conditionstub-layout table:stub-id="CS17479dbe252x842a1" table:type="vertical">
+        <table:cell table:ref-id="CV17479df78b2xd9f92y6" table:span="1"/>
+      </table:conditionstub-layout>
+      <table:actionstub-layout table:width="100" table:stub-id="AS17479de8be3x7cec"/>
+    </table:tablelayout>
+  </table:decisiontable>
+</dtmodel:decisionTableModel>

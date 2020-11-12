@@ -33,4 +33,4 @@ CF_CREDS.sh
 Makefile*
 .env
 
-db_sub
+# hdb_sub

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="temps" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="temps"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sensors.temp">
+    <resourceUri>sensors.temp</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="sensors.temp">
+  <attributes>
+    <attribute id="tempId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tempId"/>
+      <keyMapping columnObjectName="sensors.temp" columnName="tempId"/>
+    </attribute>
+    <attribute id="ts" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ts"/>
+      <keyMapping columnObjectName="sensors.temp" columnName="ts"/>
+    </attribute>
+    <attribute id="created" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="created"/>
+      <keyMapping columnObjectName="sensors.temp" columnName="created"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="tempVal" order="2" aggregationType="avg" measureType="simple">
+      <descriptions defaultDescription="tempVal"/>
+      <measureMapping columnObjectName="sensors.temp" columnName="tempVal"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
