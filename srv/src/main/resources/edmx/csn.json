@@ -223,9 +223,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -319,9 +316,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -548,14 +542,14 @@
       "@Common.Label": "{i18n>UserID}"
     },
     "cuid": {
-      "kind": "type",
+      "kind": "entity",
+      "abstract": true,
       "elements": {
         "ID": {
           "key": true,
           "type": "cds.UUID"
         }
-      },
-      "$syntax": "aspect"
+      }
     },
     "localized.CatalogService.Authors": {
       "kind": "entity",
@@ -734,9 +728,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -1342,9 +1333,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -1485,9 +1473,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -1633,9 +1618,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 14,
@@ -2197,9 +2179,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -2283,9 +2262,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2323,9 +2299,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 3,
@@ -2414,9 +2387,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2454,9 +2424,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "key": true,
           "type": "cds.String",
           "length": 14,
@@ -2540,9 +2507,6 @@
           "@Common.Label": "{i18n>Description}"
         },
         "code": {
-          "@Common.Text": {
-            "=": "name"
-          },
           "@odata.containment.ignore": true,
           "key": true,
           "type": "cds.String",
@@ -2568,7 +2532,6 @@
   },
   "$version": "1.0",
   "meta": {
-    "creator": "CDS Compiler v1.43.0",
-    "flavor": "inferred"
+    "creator": "CDS Compiler v1.39.0"
   }
 }

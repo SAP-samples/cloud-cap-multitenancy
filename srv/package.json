@@ -38,8 +38,8 @@
   "dependencies": {
     "@sap/xsenv": "latest",
     "@sap/xssec": "^2",
-    "@sap/cds": "3.34.2",
-    "@sap/cds-mtx": "1.0.16",
+    "@sap/cds": "^4",
+    "@sap/cds-mtx": "^1",
     "@sap/instance-manager": "^2.2",
     "@sap/hdi-deploy": "^3",
     "@sap/hana-client": "^2",

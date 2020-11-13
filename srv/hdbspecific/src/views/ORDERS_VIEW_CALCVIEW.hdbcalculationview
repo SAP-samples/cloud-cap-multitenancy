@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="ORDERS_VIEW_CALCVIEW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="HOURLY" enforceSqlExecution="false">
+<descriptions defaultDescription="ORDERS_VIEW_CALCVIEW"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ORDERS_VIEW">
+    <resourceUri>ORDERS_VIEW</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="ORDERS_VIEW">
+  <attributes>
+    <attribute id="State" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="State"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="State"/>
+    </attribute>
+    <attribute id="Sold_On" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sold_On"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="Sold_On"/>
+    </attribute>
+    <attribute id="TITLE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="TITLE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Total_GLD" order="4" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Total_GLD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_GLD"/>
+    </measure>
+    <measure id="Quantity" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Quantity"/>
+    </measure>
+    <measure id="Total_VES" order="6" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Total_VES"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_VES"/>
+    </measure>
+    <measure id="Total_EUR" order="7" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Total_EUR"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_EUR"/>
+    </measure>
+    <measure id="Total_USD" order="8" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Total_USD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_USD"/>
+    </measure>
+    <measure id="Price_USD" order="9" aggregationType="sum" engineAggregation="avg" measureType="simple">
+      <descriptions defaultDescription="Price_USD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_USD"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="0" y="0"/>
+      <rectangleSize width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
