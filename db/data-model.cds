@@ -39,14 +39,14 @@ entity States {
   name     : String(24);
 }
 
-entity OrdersWithState as projection on Orders {
-  Orders.ID as ID, 
-  Orders.book.title as Title, 
-  Orders.quantity as Quantity, 
-  Orders.sold_on as Sold_On,
-  Orders.Price_USD as Price_USD,
-  Orders.state.name as State
-} 
+// entity OrdersWithState as projection on Orders {
+//   Orders.ID as ID, 
+//   Orders.book.title as Title, 
+//   Orders.quantity as Quantity, 
+//   Orders.sold_on as Sold_On,
+//   Orders.Price_USD as Price_USD,
+//   Orders.state.name as State
+// } 
 
 @cds.persistence.exists
 entity Orders_View {
