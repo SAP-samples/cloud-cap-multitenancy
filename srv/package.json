@@ -38,10 +38,10 @@
   "dependencies": {
     "@sap/xsenv": "latest",
     "@sap/xssec": "^2",
-    "@sap/cds": "3.34.2",
-    "@sap/cds-mtx": "1.0.16",
+    "@sap/cds": "4.3.0",
+    "@sap/cds-mtx": "git://github.com/andrewlunde/cds-mtx.git",
     "@sap/instance-manager": "^2.2",
-    "@sap/hdi-deploy": "^3",
+    "@sap/hdi-deploy": "git://github.com/andrewlunde/hdideploy.js.git",
     "@sap/hana-client": "^2",
     "nodemon": "^2",
     "cfenv": "latest",

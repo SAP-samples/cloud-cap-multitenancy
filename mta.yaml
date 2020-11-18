@@ -200,6 +200,8 @@ resources:
       service-name: CAPMT_HDI
       config:
          schema: 
+   properties:
+      common-container-name: '${service-name}'      
 
 # cf create-service hana hdi-shared CAPMT_SUB -c '{"config":{"schema":""}}'
  - name: capmt-sub
@@ -248,5 +250,10 @@ resources:
             onUnSubscriptionAsync: false
             #callbackTimeoutMillis: 300000
 
-
+ - name: POC_XXX-table-grantor
+   type: org.cloudfoundry.existing-service
+   properties:
+      POC_MAST-table-grantor-service: '${service-name}'
+   parameters:
+      service-name: CAPMT_HDI
 
