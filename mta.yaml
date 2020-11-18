@@ -24,7 +24,7 @@ modules:
 # cf push capmt-hdb -p db -k 512M -m 512M
  - name: capmt-hdb
    type: hdb
-   path: db
+   path: db_comm
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
       ignore: ["default-env.json", "node_modules/"]
@@ -36,6 +36,31 @@ modules:
       disk-quota: 512M
    requires:
     - name: capmt-hdi
+
+# cp -avp db_sub/src/views/ srv/hdbspecific/src/views/ ; cds build/all ; rm -rf db_sub ; cp -avp db db_sub ; cp -avp srv/hdbspecific/ db_sub/ ; cf push capmt-rtc -p db_sub -k 512M -m 512M -u none -b nodejs_buildpack ; sleep 30 ; cf stop capmt-rtc
+ - name: capmt-rtc
+   type: hdb
+   path: db
+   build-parameters:
+      # Don't package the dependencies if you're running into EINTEGRITY issues
+      ignore: [".DS_Store", "default-env.json", "node_modules/"]
+      # Suppress the calling of npm install by listing no commands
+      builder: custom
+      commands: []
+   parameters:
+      memory: 512M
+      disk-quota: 512M
+   requires:
+    - name: capmt-hdi
+    - name: capmt-sub
+      properties:
+         TARGET_CONTAINER: '~{subscriber-container-name}'
+    - name: POC_XXX-table-grantor
+      group: SERVICE_REPLACEMENTS
+      properties:
+         key: POC_log-table-grantor
+         service: '~{POC_MAST-table-grantor-service}'
+
 
 # cf push capmt-srv -p srv -n ${org}-${space}-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M
  - name: capmt-srv
@@ -55,8 +80,8 @@ modules:
       # cf set-env capmt-srv CF_API_USER $CF_API_USER
       # cf set-env capmt-srv CF_API_PW $CF_API_PW
       # cf restage capmt-srv
-      CF_API_USER: user@domain.com
-      CF_API_PW: xxxxxx
+      #CF_API_USER: user@domain.com
+      #CF_API_PW: xxxxxx
    parameters:
       memory: 512M
       disk-quota: 1024M
@@ -67,10 +92,15 @@ modules:
       properties:
          url: ${default-url}
    requires:
-    - name: capmt-hdi
     - name: capmt-uaa
     - name: capmt-reg
     - name: capmt-smc
+    - name: capmt-hdi
+    - name: POC_XXX-table-grantor
+      group: SERVICE_REPLACEMENTS
+      properties:
+         key: POC_log-table-grantor
+         service: '~{POC_MAST-table-grantor-service}'
 
 
 # cf push capmt-app -p app -n capmt-app -d cfapps.us10.hana.ondemand.com -k 256M -m 256M
@@ -170,6 +200,16 @@ resources:
       service-name: CAPMT_HDI
       config:
          schema: 
+
+# cf create-service hana hdi-shared CAPMT_SUB -c '{"config":{"schema":""}}'
+ - name: capmt-sub
+   type: com.sap.xs.hdi-container
+   parameters:
+      service-name: CAPMT_SUB
+      config:
+         schema: 
+   properties:
+      subscriber-container-name: '${service-name}'      
 
 # CAP-MTX Managed HANA (Internal Service Manager)
  - name: capmt-smc
