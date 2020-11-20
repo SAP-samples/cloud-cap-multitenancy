@@ -108,9 +108,12 @@
         <NavigationProperty Name="country" Type="CatalogService.Countries">
           <ReferentialConstraint Property="country_code" ReferencedProperty="code"/>
         </NavigationProperty>
-        <Property Name="amount" Type="Edm.Int32"/>
+        <Property Name="sold_on" Type="Edm.Date"/>
+        <Property Name="quantity" Type="Edm.Int32"/>
+        <Property Name="Price_USD" Type="Edm.Double"/>
         <Property Name="book_ID" Type="Edm.Int32"/>
         <Property Name="country_code" Type="Edm.String" MaxLength="3"/>
+        <Property Name="state_code" Type="Edm.String" MaxLength="2"/>
       </EntityType>
       <Annotations Target="CatalogService.EntityContainer/Authors">
         <Annotation Term="Capabilities.DeleteRestrictions">
@@ -163,6 +166,7 @@
       </Annotations>
       <Annotations Target="CatalogService.Countries/code">
         <Annotation Term="Common.Label" String="國家代碼"/>
+        <Annotation Term="Common.Text" Path="name"/>
       </Annotations>
       <Annotations Target="CatalogService.Countries_texts/name">
         <Annotation Term="Common.Label" String="名稱"/>
@@ -172,6 +176,7 @@
       </Annotations>
       <Annotations Target="CatalogService.Countries_texts/code">
         <Annotation Term="Common.Label" String="國家代碼"/>
+        <Annotation Term="Common.Text" Path="name"/>
       </Annotations>
       <Annotations Target="CatalogService.EntityContainer/Orders">
         <Annotation Term="Capabilities.DeleteRestrictions">

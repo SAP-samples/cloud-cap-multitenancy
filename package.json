@@ -44,6 +44,15 @@
           }
         },
         {
+          "for": "hana",
+          "src": "db_comm",
+          "options": {
+            "model": [
+              "db_comm"
+            ]
+          }
+        },
+        {
           "for": "node-cf",
           "src": "srv",
           "options": {

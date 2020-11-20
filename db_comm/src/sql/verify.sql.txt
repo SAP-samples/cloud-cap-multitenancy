@@ -1,0 +1,14 @@
+-- Verify if and access_role and an external_privileges_role were created
+SELECT * FROM ROLES WHERE SUBSTRING(ROLE_NAME, 0, 32) = SUBSTRING((SELECT CURRENT_SCHEMA FROM "DUMMY"), 0, 32);
+
+-- Create a new user (AS DBADMIN)
+CREATE USER COMMON_USER PASSWORD Whatever8642 NO FORCE_FIRST_PASSWORD_CHANGE;
+
+-- Grant the same role(permissions) as the container user to COMMON_USER
+CALL "db_grant_role"(IN_USER => 'COMMON_USER',IN_ROLE => 'common_admin',EX_MESSAGE => ?);
+
+-- Verify that the needed users are assigned those ROLES
+SELECT * FROM GRANTED_ROLES WHERE ROLE_NAME = 'common_admin';
+
+-- Verify that the grants necessary for cross container access are created (AS DBADMIN)
+SELECT * FROM ROLES WHERE SUBSTRING(ROLE_NAME, 0, 7) = 'POC_XXX';

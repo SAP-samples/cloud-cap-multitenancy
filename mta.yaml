@@ -21,7 +21,8 @@ modules:
 
 ### New Modules Here ###
 
-# cf push capmt-hdb -p db -k 512M -m 512M
+# cf push capmt-hdb -p db_comm -k 512M -m 512M -u none -b nodejs_buildpack ; sleep 30 ; cf stop capmt-hdb
+# cds build/all ; cf push capmt-hdb -p db_comm -k 512M -m 512M -u none -b nodejs_buildpack 
  - name: capmt-hdb
    type: hdb
    path: db_comm
@@ -38,6 +39,7 @@ modules:
     - name: capmt-hdi
 
 # cp -avp db_sub/src/views/ srv/hdbspecific/src/views/ ; cds build/all ; rm -rf db_sub ; cp -avp db db_sub ; cp -avp srv/hdbspecific/ db_sub/ ; cf push capmt-rtc -p db_sub -k 512M -m 512M -u none -b nodejs_buildpack ; sleep 30 ; cf stop capmt-rtc
+# cds build/all ; cf push capmt-rtc -p db -k 512M -m 512M -u none -b nodejs_buildpack
  - name: capmt-rtc
    type: hdb
    path: db

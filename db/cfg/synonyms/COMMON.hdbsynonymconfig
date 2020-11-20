@@ -1,0 +1,26 @@
+{
+  "COMMON_STATES": {
+    "target": {
+      "object": "COMMON_STATES",
+      "schema.configure"    : "POC_log-table-grantor/schema"
+    }
+  },
+  "MY_BOOKSHOP_STATES": {
+    "target": {
+      "object": "COMMON_STATES",
+      "schema.configure"    : "POC_log-table-grantor/schema"
+    }
+  },
+  "COMMON_CURRENCIES": {
+    "target": {
+      "object": "COMMON_CURRENCIES",
+      "schema.configure"    : "POC_log-table-grantor/schema"
+    }
+  },
+  "MY_BOOKSHOP_CURRENCIES": {
+    "target": {
+      "object": "COMMON_CURRENCIES",
+      "schema.configure"    : "POC_log-table-grantor/schema"
+    }
+  }
+}
