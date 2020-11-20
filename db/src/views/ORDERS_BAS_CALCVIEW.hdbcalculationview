@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="::ORDERS_BAS_CALCVIEW" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="ORDERS_BAS_CALCVIEW"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ORDERS_VIEW">
+    <resourceUri>ORDERS_VIEW</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+
+<logicalModel id="ORDERS_VIEW">
+  <attributes>
+    <attribute id="TITLE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TITLE"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="TITLE"/>
+    </attribute>
+    <attribute id="Sold_On" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sold_On"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="Sold_On"/>
+    </attribute>
+    <attribute id="State" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="State"/>
+      <keyMapping columnObjectName="ORDERS_VIEW" columnName="State"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Quantity" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Quantity"/>
+    </measure>
+    <measure id="Price_USD" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Price_USD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Price_USD"/>
+    </measure>
+    <measure id="Total_USD" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total_USD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_USD"/>
+    </measure>
+    <measure id="Total_EUR" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total_EUR"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_EUR"/>
+    </measure>
+    <measure id="Total_VES" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total_VES"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_VES"/>
+    </measure>
+    <measure id="Total_GLD" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total_GLD"/>
+      <measureMapping columnObjectName="ORDERS_VIEW" columnName="Total_GLD"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions>
+    <localDimension id="Levs">
+      <attributeRef xsi:type="DataFoundation:Attribute">TITLE</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">State</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="Levs" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="LEVEL_NAME_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription="Levs"/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="TITLE" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="TITLE" sortDirection="ASC"/>
+            <level levelAttribute="State" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="State" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    {shape_greg_time}
+  </shapes>
+</layout>
+</Calculation:scenario>
