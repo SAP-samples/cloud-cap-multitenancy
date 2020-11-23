@@ -16,6 +16,7 @@ build-parameters:
      commands:
       - npm install
       - npx -p @sap/cds-dk cds build
+#      - cp -avp db/src/gen/ srv/gen/sdc/db/src
 
 modules:
 
@@ -65,6 +66,7 @@ modules:
 
 
 # cf push capmt-srv -p srv -n ${org}-${space}-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M
+# cds build/all ; cp -avp db/src/gen/ srv/gen/sdc/db/src ; cf push capmt-srv -p srv -n partner-eng-prov-dev-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M -b nodejs_buildpack -c "node server.js"
  - name: capmt-srv
    type: nodejs
    build-parameters:

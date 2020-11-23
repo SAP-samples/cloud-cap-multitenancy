@@ -52,9 +52,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "postinstall": "npm dedupe && node .build.js",
+    "xpostinstall": "npm dedupe && node .build.js",
     "debugstart": "node --inspect server.js",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "watch": "nodemon -w . -i node_modules/**,.git/** -e cds -x npm run build"
   },
   "private": true,
