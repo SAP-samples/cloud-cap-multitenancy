@@ -14,6 +14,7 @@
   "external_deps": {
     "@sap/cds-mtx": "git://github.com/andrewlunde/cds-mtx.git#fix/suburl",
     "@sap/instance-manager": "git://github.com/andrewlunde/node-instance-manager#poc-sm",
+    "@sap/hdi-deploy": "git://github.com/andrewlunde/hdideploy.js.git",
     "other": "latest"
   },
   "deploy_deps3": {
@@ -37,12 +38,12 @@
   },
   "dependencies": {
     "@sap/xsenv": "latest",
-    "@sap/xssec": "^2",
-    "@sap/cds": "4.3.0",
+    "@sap/xssec": "^3",
+    "@sap/cds": "^4.4",
     "@sap/cds-mtx": "git://github.com/andrewlunde/cds-mtx.git",
     "@sap/instance-manager": "^2.2",
-    "@sap/hdi-deploy": "git://github.com/andrewlunde/hdideploy.js.git",
     "@sap/hana-client": "^2",
+    "@sap/hdi-deploy": "^3.11",
     "nodemon": "^2",
     "cfenv": "latest",
     "passport": "^0.4.1",
