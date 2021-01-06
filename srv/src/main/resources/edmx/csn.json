@@ -2,7 +2,7 @@
   "namespace": "my.bookshop",
   "definitions": {
     "CatalogService": {
-      "@source": "srv/cat-service.cds",
+      "@source": "cat-service.cds",
       "kind": "service",
       "@requires": [
         "system-user",
@@ -2568,7 +2568,7 @@
   },
   "$version": "1.0",
   "meta": {
-    "creator": "CDS Compiler v1.45.0",
+    "creator": "CDS Compiler v1.46.6",
     "flavor": "inferred"
   }
 }

@@ -29,7 +29,7 @@ modules:
    path: db_comm
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/", "package-lock.json"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -46,7 +46,7 @@ modules:
    path: db
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: [".DS_Store", "default-env.json", "node_modules/"]
+      ignore: [".DS_Store", "default-env.json", "node_modules/", "package-lock.json"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -71,7 +71,7 @@ modules:
    type: nodejs
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/", "package-lock.json"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -113,7 +113,7 @@ modules:
    path: app
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/"]
+      ignore: ["default-env.json", "node_modules/", "package-lock.json"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
