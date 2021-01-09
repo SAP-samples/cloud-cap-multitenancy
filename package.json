@@ -63,19 +63,15 @@
           }
         },
         {
-          "for": "java-cf",
-          "src": "srv",
+          "for": "mtx",
+          "src": ".",
+          "dest": "srv",
           "options": {
             "model": [
               "db",
               "srv"
             ]
           }
-        },
-        {
-          "for": "mtx",
-          "src": ".",
-          "dest": "srv"
         }
       ]
     },
@@ -102,7 +98,7 @@
       "version": "v4"
     },
     "hana": {
-      "deploy-format": "hdbtable"
+      "xdeploy-format": "hdbtable"
     },
     "features": {
       "snapi": true

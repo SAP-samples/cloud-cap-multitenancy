@@ -15,8 +15,13 @@ build-parameters:
    - builder: custom
      commands:
       - npm install
-      - npx -p @sap/cds-dk cds build
+#      - npx -p @sap/cds-dk cds build
+      - cds build
 #      - cp -avp db/src/gen/ srv/gen/sdc/db/src
+  after-all:
+   - builder: custom
+     commands:
+      - rm -f srv/gen/sdc/db_comm/data-model.cds
 
 modules:
 
@@ -67,11 +72,12 @@ modules:
 
 # cf push capmt-srv -p srv -n ${org}-${space}-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M
 # cds build/all ; cp -avp db/src/gen/ srv/gen/sdc/db/src ; cf push capmt-srv -p srv -n partner-eng-prov-dev-capmt-srv -d cfapps.us10.hana.ondemand.com -k 1024M -m 512M -b nodejs_buildpack -c "node server.js"
+# cf deploy mta_archives/capmt.mtar -f -m capmt-srv
  - name: capmt-srv
    type: nodejs
    build-parameters:
       # Don't package the dependencies if you're running into EINTEGRITY issues
-      ignore: ["default-env.json", "node_modules/", "package-lock.json"]
+      ignore: ["default-env.json", "node_modules/", "package-lock.json", "gen/sdc/db_comm/"]
       # Suppress the calling of npm install by listing no commands
       builder: custom
       commands: []
@@ -204,6 +210,7 @@ resources:
       service-name: CAPMT_HDI
       config:
          schema: 
+         #database_id: 197ee647-a43c-49f5-8ea6-5561a802ed6f
    properties:
       common-container-name: '${service-name}'      
 
@@ -214,6 +221,7 @@ resources:
       service-name: CAPMT_SUB
       config:
          schema: 
+         #database_id: 197ee647-a43c-49f5-8ea6-5561a802ed6f
    properties:
       subscriber-container-name: '${service-name}'      
 
@@ -230,6 +238,7 @@ resources:
       config:
          acquireTimeoutMillis: max
          polling_timeout_seconds: 480
+         #database_id: 197ee647-a43c-49f5-8ea6-5561a802ed6f
 
 # Multitenant Registration(using CAP-MTX style url)
 # Manually add route after tenant subscription
