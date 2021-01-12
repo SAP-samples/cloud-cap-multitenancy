@@ -41,7 +41,7 @@
     "@sap/xsenv": "latest",
     "@sap/xssec": "^3",
     "@sap/cds": "^4.4",
-    "@sap/cds-mtx": "git://github.com/andrewlunde/cds-mtx.git",
+    "@sap/cds-mtx": ">=1.0.26",
     "@sap/instance-manager": "^2.2",
     "@sap/hana-client": "^2.6",
     "@sap/hdi-deploy": "^3.11",
