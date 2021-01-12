@@ -34,6 +34,7 @@
     "@sap/cds": "3.34.2",
     "@sap/cds-mtx": "git://github.wdf.sap.corp/I830671/cds-mtx.git#fix/suburl",
     "@sap/instance-manager": "git://github.wdf.sap.corp/I830671/node-instance-manager#poc-sm",
+    "xhdb": "^0.17.2",
     "other": "latest"
   },
   "dependencies": {
@@ -42,20 +43,19 @@
     "@sap/cds": "^4.4",
     "@sap/cds-mtx": "git://github.com/andrewlunde/cds-mtx.git",
     "@sap/instance-manager": "^2.2",
-    "@sap/hana-client": "^2",
+    "@sap/hana-client": "^2.6",
     "@sap/hdi-deploy": "^3.11",
     "nodemon": "^2",
     "cfenv": "latest",
     "passport": "^0.4.1",
     "express": "^4.17.1",
-    "hdb": "^0.17.2",
     "body-parser": "latest"
   },
   "devDependencies": {},
   "scripts": {
     "xpostinstall": "npm dedupe && node .build.js",
     "debugstart": "node --inspect server.js",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "watch": "nodemon -w . -i node_modules/**,.git/** -e cds -x npm run build"
   },
   "private": true,
@@ -96,6 +96,10 @@
     "requires": {
       "db": {
         "kind": "hana",
+        "pool": {
+          "max": 3000,
+          "min": 100
+        },
         "model": [
           "gen"
         ],

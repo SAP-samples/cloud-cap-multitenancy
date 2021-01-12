@@ -98,7 +98,7 @@
       "version": "v4"
     },
     "hana": {
-      "xdeploy-format": "hdbtable"
+      "deploy-format": "hdbtable"
     },
     "features": {
       "snapi": true
