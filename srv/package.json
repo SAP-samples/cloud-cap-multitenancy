@@ -104,13 +104,13 @@
         "pool": {
           "acquireTimeoutMillis_doc": "max milliseconds an acquire call will wait for a resource before timing out. (default no limit), if supplied should non-zero positive integer.",
           "acquireTimeoutMillis": 4000,
-          "softIdleTimeoutMillis_doc": "amount of time an object may sit idle in the pool before it is eligible for eviction by the idle object evictor (if any), with the extra condition that at least "min idle" object instances remain in the pool. Default -1 (nothing can get evicted)",
+          "softIdleTimeoutMillis_doc": "amount of time an object may sit idle in the pool before it is eligible for eviction by the idle object evictor (if any), with the extra condition that at least 'min idle' object instances remain in the pool. Default -1 (nothing can get evicted)",
           "softIdleTimeoutMillis": 80000,
           "evictionRunIntervalMillis_doc": "How often to run eviction checks. Default: 0 (does not run).",
           "evictionRunIntervalMillis": 0,
           "max_doc": "maximum number of resources to create at any given time. (default=1)",
           "max": 3000,
-          "min_doc": "minimum number of resources to keep in pool at any given time. If this is set >= max, the pool will silently set the min to equal max. (default=0)",
+          "xmin_doc": "minimum number of resources to keep in pool at any given time. If this is set >= max, the pool will silently set the min to equal max. (default=0)",
           "min": 10
         },
         "model": [
