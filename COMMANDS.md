@@ -19,3 +19,10 @@ mbt build -p=cf -t=mta_archives --mtar=capmt.mtar ; cf deploy mta_archives/capmt
 ```
 cf undeploy capmt -f --delete-services
 ```
+
+```
+cf de capmt-rtc
+cat default-env.json | jq . > default-env.jsonx ; cp default-env.jsonx default-env.json ; rm -f default-env.jsonx
+hana-cli status
+hana-cli querySimple -q "SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 3"
+```

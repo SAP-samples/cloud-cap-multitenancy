@@ -16,6 +16,8 @@ build-parameters:
      commands:
       - npm install
 #      - npx -p @sap/cds-dk cds build
+# For some reason if you've bound a container in db it causes cds build to fail.
+      - rm -f db/.env
       - cds build
 #      - cp -avp db/src/gen/ srv/gen/sdc/db/src
 #  after-all:

@@ -112,7 +112,7 @@
           "max": 3000,
           "xmin_doc": "minimum number of resources to keep in pool at any given time. If this is set >= max, the pool will silently set the min to equal max. (default=0)",
           "min": 10
-        },
+       },
         "model": [
           "gen"
         ],
