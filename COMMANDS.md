@@ -26,3 +26,8 @@ cat default-env.json | jq . > default-env.jsonx ; cp default-env.jsonx default-e
 hana-cli status
 hana-cli querySimple -q "SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 3"
 ```
+
+```
+tools/smsi-cli -s sub1 tables
+tools/smsi-cli -qv -s sub1 qs -q '"SELECT NOW() FROM DUMMY"'
+```
