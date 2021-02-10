@@ -2,18 +2,20 @@
 do_run=1 # Execute(evaluate) the commands
 #do_run=0 # Don't evaluate any commands
 
-q_flag='false'
+backup_files_flag='false'
+restore_files_flag='false'
 dry_run_flag='false'
 subdomain='admin'
 verbose='false'
 
 print_usage() {
-  printf "Usage: smsi-cli [-dv] -s <subdomain> <hana-cli args>..."
+  printf "Usage: smsi-cli [-brdv] -s <subdomain> <hana-cli args>..."
 }
 
-while getopts 'qds:v' flag; do
+while getopts 'brds:v' flag; do
   case "${flag}" in
-    q) q_flag='true' ;;
+    b) backup_files_flag='true' ;;
+    r) restore_files_flag='true' ;;
     d) dry_run_flag='true' ;;
     s) subdomain="${OPTARG}" ;;
     v) verbose='true' ;;
@@ -38,56 +40,64 @@ hana_cli_args=${@:$OPTIND:$argsleft}
 
 tmp_folder='.smsi'
 
-if [ $verbose = 'true' ]; then echo; echo "Make "$tmp_folder" folder."; fi
-cmd='mkdir -p '$tmp_folder
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+if [ $restore_files_flag = 'false' ]; then 
 
-FILE='.env'
-if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" into "$tmp_folder" folder."; fi
-cmd='mv '$FILE' '$tmp_folder
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then if [[ -f $FILE ]]; then eval $cmd; fi; fi
+    if [ $verbose = 'true' ]; then echo; echo "Make "$tmp_folder" folder."; fi
+    cmd='mkdir -p '$tmp_folder
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
 
-FILE='default-env.json'
-if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" into "$tmp_folder" folder."; fi
-cmd='mv '$FILE' '$tmp_folder
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then if [[ -f $FILE ]]; then eval $cmd; fi; fi
+    FILE='.env'
+    if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" into "$tmp_folder" folder."; fi
+    cmd='mv '$FILE' '$tmp_folder
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then if [[ -f $FILE ]]; then eval $cmd; fi; fi
 
-if [ $verbose = 'true' ]; then echo; echo "Move default-env-"$subdomain".json to default-env.json"; fi
-cmd='mv default-env-'$subdomain'.json default-env.json'
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+    FILE='default-env.json'
+    if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" into "$tmp_folder" folder."; fi
+    cmd='mv '$FILE' '$tmp_folder
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then if [[ -f $FILE ]]; then eval $cmd; fi; fi
 
+    if [ $verbose = 'true' ]; then echo; echo "Move default-env-"$subdomain".json to default-env.json"; fi
+    cmd='mv default-env-'$subdomain'.json default-env.json'
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
 
+fi
 
-if [ $verbose = 'true' ]; then echo; echo "Exec hana-cli "$hana_cli_args" against "$subdomain; fi
-cmd='hana-cli '$hana_cli_args''
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+if ! ( [ $backup_files_flag = 'true' ] || [ $restore_files_flag = 'true' ] ); then 
 
+    if [ $verbose = 'true' ]; then echo; echo "Exec hana-cli "$hana_cli_args" against "$subdomain; fi
+    cmd='hana-cli '$hana_cli_args''
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
 
+fi
 
-if [ $verbose = 'true' ]; then echo; echo "Move default-env.json to default-env-"$subdomain".json"; fi
-cmd='mv default-env.json default-env-'$subdomain'.json'
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+if [ $backup_files_flag = 'false' ]; then 
 
-FILE='default-env.json'
-if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" from "$tmp_folder" folder."; fi
-cmd='mv '$tmp_folder'/'$FILE' .' 
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then if [[ -f $tmp_folder'/'$FILE ]]; then eval $cmd; fi; fi
+    if [ $verbose = 'true' ]; then echo; echo "Move default-env.json to default-env-"$subdomain".json"; fi
+    cmd='mv default-env.json default-env-'$subdomain'.json'
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
 
-FILE='.env'
-if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" from "$tmp_folder" folder."; fi
-cmd='mv '$tmp_folder'/'$FILE' .' 
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then if [[ -f $tmp_folder'/'$FILE ]]; then eval $cmd; fi; fi
+    FILE='default-env.json'
+    if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" from "$tmp_folder" folder."; fi
+    cmd='mv '$tmp_folder'/'$FILE' .' 
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then if [[ -f $tmp_folder'/'$FILE ]]; then eval $cmd; fi; fi
 
-if [ $verbose = 'true' ]; then echo; echo "Remove "$tmp_folder" folder."; fi
+    FILE='.env'
+    if [ $verbose = 'true' ]; then echo; echo "Move "$FILE" from "$tmp_folder" folder."; fi
+    cmd='mv '$tmp_folder'/'$FILE' .' 
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then if [[ -f $tmp_folder'/'$FILE ]]; then eval $cmd; fi; fi
 
-cmd='rmdir '$tmp_folder
-if [ $verbose = 'true' ]; then echo $cmd; fi
-if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+    if [ $verbose = 'true' ]; then echo; echo "Remove "$tmp_folder" folder."; fi
+
+    cmd='rmdir '$tmp_folder
+    if [ $verbose = 'true' ]; then echo $cmd; fi
+    if [ $dry_run_flag = 'false' ]; then eval $cmd; fi
+
+fi

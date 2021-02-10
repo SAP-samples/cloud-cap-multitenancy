@@ -28,6 +28,27 @@ hana-cli querySimple -q "SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 3"
 ```
 
 ```
-tools/smsi-cli -s sub1 tables
-tools/smsi-cli -qv -s sub1 qs -q '"SELECT NOW() FROM DUMMY"'
+tools/./
+./smsi-cli -qv -s sub1 qs -q '"SELECT NOW() FROM DUMMY"'
+
+./smsi-cli -s sub1 qs -q '"SELECT NOW() FROM DUMMY"'
+
+// Get List of all tables
+./smsi-cli -s sub1 tables
+
+// Get Field details of a specific table
+./smsi-cli -s sub1 ti SCHEMA TABLE
+./smsi-cli -s sub1 it 5922A2BA0669402BB61AA6065450C660  MY_BOOKSHOP_BOOKS
+
+// List the Top 5 rows of a specific table (in default SCHEMA)
+hana-cli qs -q "SELECT ID,TITLE FROM MY_BOOKSHOP_BOOKS LIMIT 4"
+hana-cli qs -q "SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 4"
+
+// SELECT Statements with wildcard * won't work since bash wants to expand them instead of passing through unchanged to hana-cli
+./smsi-cli -s sub1 qs -q '"SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 4"'
+// You can avoid * 
+./smsi-cli -s sub1 qs -q '"SELECT ID,TITLE FROM MY_BOOKSHOP_BOOKS LIMIT 4"'
+// OR you can "wrap" hana-cli invocations with smsi-cli using the -b=backup_files and -r=restore_files flags
+./smsi-cli -b -s sub1 ; hana-cli qs -q "SELECT * FROM MY_BOOKSHOP_BOOKS LIMIT 4" ; ./smsi-cli -r -s sub1 
+
 ```
