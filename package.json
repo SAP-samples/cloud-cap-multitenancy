@@ -11,6 +11,7 @@
     "@sap/hana-client": "^2.4.177"
   },
   "devDependencies": {
+    "@sap/cds-dk": "^3",
     "sqlite3": "^4"
   },
   "scripts": {
