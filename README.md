@@ -17,6 +17,10 @@ There are many disparate pieces of information found throughout the SAP document
 
 This project is implemented completely in the Node.JS programming language.  A java programing language multitenant sample code project can be found at [https://github.com/SAP-samples/cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java).  See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
  
+## Branches
+
+There are several branches in this repo.  This(xcontainer) branch contains a work-around for joining per subscriptions to a common container. 
+ 
 ## Requirements
 
  - An [SAP Cloud Platform account](https://account.hana.ondemand.com/) or [SAP Cloud Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
