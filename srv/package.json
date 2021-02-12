@@ -94,9 +94,9 @@
       "deploy-format": "hdbtable"
     },
     "query": {
-        "limit": {
-            "max": 4000
-        }
+      "limit": {
+        "max": 4000
+      }
     },
     "requires": {
       "db": {
