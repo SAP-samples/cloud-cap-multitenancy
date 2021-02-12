@@ -10,9 +10,12 @@ const appEnv = cfenv.getAppEnv();
 
 const xsenv = require('@sap/xsenv');
 const services = xsenv.getServices({
-  uaa: { tag: 'xsuaa' },
-  registry: { tag: 'SaaS' }
-});
+    uaa: { tag: 'xsuaa' },
+    registry: { tag: 'SaaS' },
+    sm: { label: 'service-manager' },
+    hana: { label: 'hana' },
+  });
+  
 
 console.log("services:" + JSON.stringify(services, null, 2));
 console.log("appEnv:" + JSON.stringify(appEnv, null, 2));
@@ -230,7 +233,131 @@ async function deleteRoute(tenantID, connectRes) {
     };
 };
 
+async function addLabelSM(tenantID,subdomainName) {
+    try {
+        // Get Auth Endpoint
+        let options1 = {
+            method: 'GET',
+            url: services.sm.url + '/oauth/token?grant_type=client_credentials&response_type=token',
+            headers: {
+                'Accept': 'application/json'
+            },
+            auth: {
+                username: services.sm.clientid,
+                password: services.sm.clientsecret
+            }
+        };
+        console.log("options1:" + inspect(options1,false,1));
+        let res1 = await axios(options1);
+        console.log("res1:" + inspect(res1.data,false,1));
+        try {
+            // Login + Get Token
+            let options2 = {
+                method: 'GET',
+                url: services.sm.sm_url + '/v1/service_bindings/?labelQuery=tenant_id+eq+' + "'" + tenantID + "'",
+                headers: {
+                    'Authorization': 'Bearer ' + res1.data.access_token
+                }
+            };
+            console.log("options2:" + inspect(options2,false,1));
+            let res2 = await axios(options2);
+            console.log("res2:" + inspect(res2.data, false, 4));
+            try {
+                // Login + Get Token
+                let options3 = {
+                    method: 'PATCH',  //service_instances/e564c14b-f5b3-458f-84aa-8bcdf5968e16
+                    url: services.sm.sm_url + '/v1/service_instances/' + res2.data.items[0].service_instance_id,
+                    headers: {
+                        'Authorization': 'Bearer ' + res1.data.access_token,
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        'labels': [
+                            {
+                                'op': 'add',
+                                'key': 'subdomain_name',
+                                'values': [
+                                    subdomainName
+                                ]
+                            }
+                        ]
+                    }
+                };
+                console.log("options3:" + inspect(options3,false,1));
+                let res3 = await axios(options3);
+                console.log("res3:" + inspect(res3.data, false, 4));
 
+                try {
+                    // Login + Get Token
+                    let options4 = {
+                        method: 'GET',
+                        url: services.sm.sm_url + '/v1/service_bindings/?labelQuery=tenant_id+eq+' + "'TENANT-" + tenantID + "-META'",
+                        headers: {
+                            'Authorization': 'Bearer ' + res1.data.access_token
+                        }
+                    };
+                    console.log("options4:" + inspect(options4,false,1));
+                    let res4 = await axios(options4);
+                    console.log("res4:" + inspect(res4.data, false, 4));
+                    try {
+                        // Login + Get Token
+                        let options5 = {
+                            method: 'PATCH',  //service_instances/e564c14b-f5b3-458f-84aa-8bcdf5968e16
+                            url: services.sm.sm_url + '/v1/service_instances/' + res4.data.items[0].service_instance_id,
+                            headers: {
+                                'Authorization': 'Bearer ' + res1.data.access_token,
+                                'Content-Type': 'application/json'
+                            },
+                            data: {
+                                'labels': [
+                                    {
+                                        'op': 'add',
+                                        'key': 'subdomain_name',
+                                        'values': [
+                                            subdomainName
+                                        ]
+                                    }
+                                ]
+                            }
+                        };
+                        console.log("options5:" + inspect(options5,false,1));
+                        let res5 = await axios(options5);
+                        console.log("res5:" + inspect(res5.data, false, 4));
+        
+        
+                        
+                        return res5.data;
+            
+                    } catch (err) {
+                        console.log(err.stack);
+                        return err.message;
+                    }
+                    //return res4.data;
+        
+                } catch (err) {
+                    console.log(err.stack);
+                    return err.message;
+                }
+        
+
+                //return res3.data;
+    
+            } catch (err) {
+                console.log(err.stack);
+                return err.message;
+            }
+            //return res2.data;
+
+        } catch (err) {
+            console.log(err.stack);
+            return err.message;
+        }
+    } catch (err) {
+        console.log(err.stack);
+        return err.message;
+    }
+};  
+  
 module.exports = (service) => {
   // event handler for returning the tenant specific application URL as a response to an onboarding request
   service.on('UPDATE', 'tenant', async (req, next) => {
@@ -255,9 +382,20 @@ module.exports = (service) => {
         function (res1) {
             createRoute(tenantHost, res1).then(
                 function (res2) {
-                    console.log('Subscribe: ', tenantHost, res2);
+                    console.log('createRoute: ', tenantHost, res2);
                     //res.status(200).send(tenantURL);
-                    return tenantURL;
+                    //req.data.subscribedTenantId
+                    console.log('addLabelSM: ', req.data.subscribedTenantId, req.data.subscribedSubdomain);
+                    addLabelSM(req.data.subscribedTenantId,req.data.subscribedSubdomain).then(
+                        function (res3) {
+                            console.log('addLabelSMres: ', res3);
+                            return tenantURL;
+                        },
+                        function (err) {
+                            console.log(err.stack);
+                            //res.status(500).send(err.message);
+                            return '';
+                        });
                 },
                 function (err) {
                     console.log(err.stack);
