@@ -17,6 +17,14 @@ There are many disparate pieces of information found throughout the SAP document
 
 This project is implemented completely in the Node.JS programming language.  A java programing language multitenant sample code project can be found at [https://github.com/SAP-samples/cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java).  See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
  
+## Branches
+
+There are several branches in this repo and a little context is warrented.  
+
+This sample utilizes the CAP multitenancy library(cds-mtx) to handle customer subscriptions which result in the ServiceManager creating run-time HANA hdi-shared containers.  In the original master branch this was tested where each subscribing customer would have their own distinct container with no need of joining the customer container with any shared data.  If this is your use case, then you'll find this version was saved in the single-container branch which will work with versions of the cds-mtx library < 1.0.27.  For use cases where joining per subscriber containers with a singluar common container, a bug was discovered in the library that prevented run-time container deployments upon subscriptions.  A work-around is provided in the xcontainer branch that will work with cds-mtx library < 1.0.27.  This work-around effectively performs a secondary deploy with the proper environment that accomplishes the desired result.  Once a fix was provided in cds-mtx >= 1.0.27, the work-around was no longer needed and the code removed and the fix-things branch was created in order to facilitate testing of the fix.  Once the fix was confirmed effective the code was merged back into the master branch.
+
+The master branch going forward implements the use-case where each run-time container will be joined with a "common container"(as defined in the db_comm folder).  The cds-mtx >= 1.0.27 will accomodate this use-case.
+ 
 ## Requirements
 
  - An [SAP Cloud Platform account](https://account.hana.ondemand.com/) or [SAP Cloud Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
