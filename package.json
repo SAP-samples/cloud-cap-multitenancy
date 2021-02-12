@@ -11,6 +11,7 @@
     "express": "^4"
   },
   "devDependencies": {
+    "@sap/cds-dk": "^3",
     "sqlite3": "^4"
   },
   "scripts": {
