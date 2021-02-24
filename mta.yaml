@@ -106,6 +106,8 @@ modules:
    requires:
     - name: capmt-uaa
     - name: capmt-reg
+    - name: capmt-cis
+    - name: capmt-dst
     - name: capmt-smc
     - name: capmt-hdi
     - name: POC_XXX-table-grantor
@@ -287,3 +289,22 @@ resources:
    parameters:
       service-name: CAPMT_HDI
 
+# SAPCP 
+ - name: capmt-cis
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: capmt-uaa
+   parameters:
+      service: cis
+      service-plan: central
+      service-name: CAPMT_CIS
+
+# Destination Service  https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/7e306250e08340f89d6c103e28840f30.html
+ - name: capmt-dst
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: capmt-uaa
+   parameters:
+      service: destination
+      service-plan: lite
+      service-name: CAPMT_DST
