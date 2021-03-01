@@ -108,6 +108,7 @@ modules:
     - name: capmt-reg
     - name: capmt-cis
     - name: capmt-dst
+    - name: capmt-con
     - name: capmt-smc
     - name: capmt-hdi
     - name: POC_XXX-table-grantor
@@ -308,3 +309,12 @@ resources:
       service: destination
       service-plan: lite
       service-name: CAPMT_DST
+
+ - name: capmt-con
+   type: org.cloudfoundry.managed-service
+   requires:
+    - name: capmt-uaa
+   parameters:
+      service: connectivity
+      service-plan: lite
+      service-name: CAPMT_CON

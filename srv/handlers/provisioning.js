@@ -456,6 +456,7 @@ module.exports = (service) => {
     console.log('[INFO ][ON_DELETE_TENANT] XXX_On Unsubscription for ' + req.data.subscribedTenantId + '.');
 
     //console.log('[INFO ][ON_DELETE_TENANT] XXX_Starting Unsubscription for ' + req.body.subscribedSubdomain + '.');
+    // Comment this next line out to bypass the default handling of the unsubscription by MTX
     const res = await next();          // IMPORTANT: call default implementation which is doing the HDI container creation
     let c = cds.env.for('app');        // use cds config framework to read app specific config node
     //let appuri = typeof c.urlpart === "undefined" ? ' ' : c.urlpart;
