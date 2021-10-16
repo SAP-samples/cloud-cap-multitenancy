@@ -13,7 +13,7 @@ Cloud Application Programming(CAP) Node.JS sample code project with multitenancy
 
 This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming(CAP) approach and it's multitenancy support library to provide true enterprise multitenant application.
 
-There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Cloud Platform.
+There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Business Technology Platform.
 
 This project is implemented completely in the Node.JS programming language.  A java programing language multitenant sample code project can be found at [https://github.com/SAP-samples/cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java).  See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
  
@@ -27,7 +27,7 @@ The master branch going forward implements the use-case where each run-time cont
  
 ## Requirements
 
- - An [SAP Cloud Platform account](https://account.hana.ondemand.com/) or [SAP Cloud Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
+ - An [SAP Business Technology Platform account](https://account.hana.ondemand.com/) or [SAP Business Technology Platform Trial account](https://account.hanatrial.ondemand.com/cockpit)
 
  - Quota for HaaS, Application Runtime, SaaS, and Service Manager
  
