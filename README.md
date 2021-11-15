@@ -7,21 +7,21 @@ SPDX-License-Identifier: Apache-2.0
 
 # Cloud CAP Multitenancy
 
-Cloud Application Programming(CAP) Node.JS sample code project with multitenancy using service manager created HANA containers for tenant data isolation.  
+SAP Cloud Application Programming (CAP) Node.JS sample code project with multitenancy using service manager created HANA containers for tenant data isolation.  
 
 ## Description
 
-This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming(CAP) approach and it's multitenancy support library to provide true enterprise multitenant application.
+This repository contains a complete Multi-Target Application (MTA) sample project that is an example of using the SAP Cloud Application Programming (CAP) approach and it's multitenancy support library to provide true enterprise multitenant application.
 
 There are many disparate pieces of information found throughout the SAP documentation as well as the CAP centric documentation, but it is difficult to bring them together as a cohesive whole.  This sample code project provides a good starting point for those wanting to build a best-practice multitenant enterprise application on SAP Business Technology Platform.
 
-This project is implemented completely in the Node.JS programming language.  A java programing language multitenant sample code project can be found at [https://github.com/SAP-samples/cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java).  See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
+This project is implemented completely in the Node.JS programming language. A Java programing language multitenant sample code project can be found in the repository [cloud-cap-samples-java](https://github.com/SAP-samples/cloud-cap-samples-java). See the [Demonstrated Features](https://github.com/SAP-samples/cloud-cap-samples-java#demonstrated-features) section of the README.
  
 ## Branches
 
-There are several branches in this repo and a little context is warrented.  
+There are several branches in this repo and a little context is warranted.  
 
-This sample utilizes the CAP multitenancy library(cds-mtx) to handle customer subscriptions which result in the ServiceManager creating run-time HANA hdi-shared containers.  In the original master branch this was tested where each subscribing customer would have their own distinct container with no need of joining the customer container with any shared data.  If this is your use case, then you'll find this version was saved in the single-container branch which will work with versions of the cds-mtx library < 1.0.27.  For use cases where joining per subscriber containers with a singluar common container, a bug was discovered in the library that prevented run-time container deployments upon subscriptions.  A work-around is provided in the xcontainer branch that will work with cds-mtx library < 1.0.27.  This work-around effectively performs a secondary deploy with the proper environment that accomplishes the desired result.  Once a fix was provided in cds-mtx >= 1.0.27, the work-around was no longer needed and the code removed and the fix-things branch was created in order to facilitate testing of the fix.  Once the fix was confirmed effective the code was merged back into the master branch.
+This sample utilizes the CAP multitenancy library (cds-mtx) to handle customer subscriptions which result in the ServiceManager creating run-time HANA hdi-shared containers.  In the original master branch this was tested where each subscribing customer would have their own distinct container with no need of joining the customer container with any shared data.  If this is your use case, then you'll find this version was saved in the single-container branch which will work with versions of the cds-mtx library < 1.0.27.  For use cases where joining per subscriber containers with a singluar common container, a bug was discovered in the library that prevented run-time container deployments upon subscriptions.  A work-around is provided in the xcontainer branch that will work with cds-mtx library < 1.0.27.  This work-around effectively performs a secondary deploy with the proper environment that accomplishes the desired result.  Once a fix was provided in cds-mtx >= 1.0.27, the work-around was no longer needed and the code removed and the fix-things branch was created in order to facilitate testing of the fix.  Once the fix was confirmed effective the code was merged back into the master branch.
 
 The master branch going forward implements the use-case where each run-time container will be joined with a "common container"(as defined in the db_comm folder).  The cds-mtx >= 1.0.27 will accomodate this use-case.
  
@@ -122,11 +122,9 @@ Tools used throughout the development of this project are evolving and my change
 
 ## Learn more...
 
-Learn more in the CAP documentation at [CAPIRE](https://cap.cloud.sap/docs/)
+Learn more in the CAP documentation at [CAPIRE](https://cap.cloud.sap/docs/).
 
-A blog post discussing this code sample can be found on SAP Community. 
-
-See: [Getting your head into Cloud Application Programming model multitenancy](https://blogs.sap.com/2020/08/20/getting-your-head-into-cloud-application-programming-model-multitenancy/) for a detailed discussion.
+A blog post discussing this code sample can be found on SAP Community. See: [Getting your head into Cloud Application Programming model multitenancy](https://blogs.sap.com/2020/08/20/getting-your-head-into-cloud-application-programming-model-multitenancy/) for a detailed discussion.
 
 
 ## License
