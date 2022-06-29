@@ -3,7 +3,8 @@ SPDX-FileCopyrightText: 2020 Andrew Lunde <andrew.lunde@sap.com>
 
 SPDX-License-Identifier: Apache-2.0
 -->
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-sfsf-benefits-ext)](https://api.reuse.software/info/github.com/SAP-samples/cloud-sfsf-benefits-ext)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cloud-cap-multitenancy)](https://api.reuse.software/info/github.com/SAP-samples/cloud-cap-multitenancy)
+
 
 # Cloud CAP Multitenancy
 
